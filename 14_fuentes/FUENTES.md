@@ -9,8 +9,12 @@
 | F05 | Decreto 94-96, Acuerdo Gubernativo 574-98, art. 81 sanciones | https://livinginguatemala.com/guides/satellite-messengers-guatemala | 22-oct-2026 | Secundaria; verificar texto oficial |
 | F06 | TNAF administrada por SIT | https://dplnews.com/?p=270771 | 22-oct-2026 | Prensa |
 | F07 | Censo 2018: 29 % usa Internet (7+ años); brechas departamentales | https://dplnews.com/censo-refleja-brechas-en-el-uso-de-internet/ | 22-oct-2026 | Prensa |
+| F08 | Starlink Business GT, Prioridad Local: 50 GB Q310, 500 GB Q870, 1 TB Q1,570, 2 TB Q2,970; +50 GB Q140. Prioridad Global: 50 GB Q1,920, 500 GB Q5,000, 1 TB Q8,850, 2 TB Q16,550 | Captura propia starlink.com, 23-oct-2026 (`evidencias/starlink_business_planes_prioridad.png`) | 23-oct-2026 | Primaria |
+| F09 | Disponibilidad "Disponible ahora"; descarga 145–276 Mbps en 15.88908, -90.53177 | Capturas propias starlink.com (`evidencias/starlink_*_babilonia.png`) | 23-oct-2026 | Primaria |
+| F10 | Ubicación y entorno de Babilonia, Chisec | Capturas Google Maps (`evidencias/maps_*`) | 23-oct-2026 | Primaria |
 
 ## Por verificar
 - Bandas de uso libre vigentes en TNAF (2.4 / 5 GHz): sin confirmación todavía.
-- Precio kit y plan Starlink Business en Guatemala.
+- Precio del kit Starlink Business (plan ya confirmado).
+- Latencia y velocidad de subida en la zona.
 - Datasheets de antenas/radios (E2).
