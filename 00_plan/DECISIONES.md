@@ -7,7 +7,7 @@
 | D03 | 25-oct | 109 edificaciones, 95 viviendas, 4.0 hab/vivienda → ≈ 380 hab | Conteo real; profesor admite más de 300 sin excederse mucho; referencia nacional 4.5 | Si el profesor pide ≈ 300: 3.2 hab/vivienda |
 | D04 | 25-oct | 109 puntos de servicio de diseño; adopción 60 % año 1, 90 % año 3 | Dimensiona el peor caso | E5 |
 | D05 | 25-oct | Starlink: diseñar con 145 Mbps ↓ / 21 Mbps ↑ / 32 ms (límite inferior) | Capturas Starlink 23-oct | — |
-| D06 | 25-oct | 1 torre central + 3 sectores 120° (azimut 95/215/335°) | Pocos equipos, carga equilibrada 31/39/39 | E3 |
+| D06 | 26-oct | 1 torre central + 3 sectores 120° (azimut 90/210/330°) | Pocos equipos, carga equilibrada 37/39/33 casas | E3 |
 | D07 | 26-oct | **Torre de 30 m** (antes 24 m provisional) | Pérdida por follaje: 4 casas > 30 dB con 30 m vs 11 con 24 m; 36 m aporta poco | E3 (presupuesto de enlace) |
 | D08 | 26-oct | Contingencia: si > 6 casas (≈ 5 %) quedan con margen < 10 dB → CPE mayor/mástil 10 m, luego nodo de relevo este, luego más altura | El relieve no limita; el follaje sí | E3 |
 | D09 | 26-oct | Esquina sup. der. = **239 m** (confirmado por Kevin) | Evidencia visual | — |
