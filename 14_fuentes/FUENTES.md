@@ -26,9 +26,14 @@
 | F22 | Tipo de cambio: 7.6445 GTQ por USD (26-oct-2026) | https://ru.tradingeconomics.com/usdgtq:cur | 26-oct-2026 | Secundaria (referencia Banguat no obtenida) |
 | F23 | Accesorios Starlink línea Empresas Performance (Gen 3) y categorías de la tienda | Capturas propias (`evidencias/starlink_accesorios_performance_gen3.png`, `starlink_tienda_categorias.png`); tabla `07_costos/precios_starlink_accesorios_GTQ.csv` | 26-oct-2026 | Primaria |
 
+| F24 | Rocket Prism 5AC Gen2: 28 dBm, sensibilidad por MCS, 9.5 W | https://www.netxl.com/ubiquiti/docs/Rocket%20Prism%20AC%20Gen2%20Datasheet.pdf | 26-oct-2026 | Hoja de datos (distribuidor) |
+| F25 | AM-5G16-120: 15–16 dBi, 137°/118°, 8° elev., VSWR 1.5, 1.1 kg, US$79 | https://uk.store.ui.com/uk/en/products/am-5g1 | 26-oct-2026 | Tienda del fabricante |
+| F26 | AM-5G19-120: 18.6–19.1 dBi, 4° elev., 5.9 kg | csd.com.au, 4cabling | 26-oct-2026 | Distribuidor |
+| F27 | LiteBeam 5AC Gen2: 23 dBi, 25 dBm, −96 dBm, 7 W, US$64.83 | https://store.ui.com; CDW | 26-oct-2026 | Fabricante/distribuidor |
+
 ## Por verificar
 - Bandas de uso libre vigentes en TNAF (2.4 / 5 GHz): sin confirmación todavía.
 - Precio vigente del plato Performance en Guatemala (hoy es estimación, ver `07_costos/plato_starlink_referencia.md`).
 - Personas por hogar en Alta Verapaz rural (INE).
 - Altura de copas (supuesto D11).
-- Datasheets de antenas/radios (E2).
+- F/B y lóbulos laterales de las antenas (no están en la hoja de datos; supuesto 25 dB).
