@@ -62,7 +62,7 @@ Terreno interpolado (RBF) desde perfiles + esquinas + centro; error en las 6 cas
 
 ## 7. Starlink en la zona (capturas del 23-oct-2026)
 Disponible ahora · descarga 145–276 Mbps · subida 21–39 Mbps · latencia 22–32 ms · diseño con 145 / 21 Mbps / 32 ms.
-Prioridad Local: 50 GB Q310 · 500 GB Q870 · 1 TB Q1,570 · 2 TB Q2,970 · +50 GB Q140/mes. Accesorios: `07_costos/precios_starlink_accesorios_GTQ.csv`.
+Prioridad Local: 50 GB Q310 · 500 GB Q870 · 1 TB Q1,570 · 2 TB Q2,970 · +50 GB Q140/mes. Plato: Performance (Gen 3), ver `07_costos/plato_starlink_referencia.md`; accesorios: `07_costos/precios_starlink_accesorios_GTQ.csv`.
 
 ## 8. Modelo de demanda
 | Parámetro | Año 1 | Año 3 (diseño) |

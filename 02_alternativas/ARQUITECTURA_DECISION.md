@@ -23,7 +23,7 @@ Por eso hay pocos equipos, pero cada decisión se calcula: tres sectores co-ubic
 Figura: `11_informe_latex/figuras/fig_aldea_sectores_prelim.png`.
 - **Una CPE por casa** (exterior, 20–23 dBi) en mástil de 6 m sobre el techo (casas con árbol al lado: elegir lado y altura despejados). Capacidad de diseño: 109 CPE (65 el año 1).
 - **2 hotspots comunitarios** (lugares por definir; la escuela figura cerrada en Maps).
-- **1 Starlink Business** (Prioridad Local) en la torre; plato en tubo con adaptador de tubo; cable Starlink de 45 m. Segundo terminal en fase 2.
+- **1 Starlink Business** (Prioridad Local) en la torre; plato en tubo con adaptador de tubo; cable Starlink de 50 m. Segundo terminal en fase 2.
 
 ## 3. Contingencia con regla de decisión (reemplaza a la regla v2)
 Al terminar el presupuesto de enlace (E3) con equipos reales: si **más de 6 casas (≈ 5 %)** quedan con margen < 10 dB, se aplican en orden: (1) CPE de mayor ganancia o mástil de 10 m en esas casas; (2) nodo de relevo en la zona alta del este (≈ 237 m) enlazado por punto a punto; (3) más altura de torre. Casas candidatas: 26, 27, 97, 30, 5, 6, 3, 104, 107.
@@ -40,7 +40,7 @@ Al terminar el presupuesto de enlace (E3) con equipos reales: si **más de 6 cas
 ## 5. Equipos (siguiente paso: fichas técnicas)
 | Rol | Cantidad | Tipo preliminar |
 |---|---|---|
-| Backhaul satelital | 1 | Starlink Standard 4 (o 4X) para Business; kit y consumo: **pendiente de precio** (ver tareas) |
+| Backhaul satelital | 1 | **Starlink Performance (Gen 3)**; ≈ US$1,499 (≈ Q11,457, estimado); 100 W de diseño |
 | Radio + antena sectorial 5 GHz | 3 | PtMP, sector 120° (o 90° + solape), ~16–18 dBi, inclinación mecánica |
 | Switch/router PoE | 1 | 4–6 puertos PoE |
 | CPE exterior | 109 (65 año 1) | 5 GHz, 20–23 dBi, PoE |
@@ -48,7 +48,7 @@ Al terminar el presupuesto de enlace (E3) con equipos reales: si **más de 6 cas
 | Hotspots | 2 | AP exterior 2.4/5 GHz |
 | Torre | 1 | Ventada, 30 m |
 | Energía | 1 sistema | FV + LiFePO₄ (E5) |
-| Accesorios Starlink | — | Adaptador de tubo Q565, cable 45 m Q1,220, fuente avanzada Q1,800 (opcional según kit) |
+| Accesorios Starlink | — | Adaptador de tubo Q480, cable Performance 50 m Q1,300, fuente avanzada Q1,800 (opcional, DC) |
 
 ## 6. Herramientas
 CloudRF (principal) · UISP Design Center (apoyo) · Google Earth Pro (perfiles/KMZ) · Python/Excel (cálculos propios; el simulador contrasta).

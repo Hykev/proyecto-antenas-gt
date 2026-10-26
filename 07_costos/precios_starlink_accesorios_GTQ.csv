@@ -1,18 +1,25 @@
-articulo,precio_GTQ,compatible_standard4,compatible_standard4X,nota
-Soporte para movilidad Standard 4 o 4X,626,si,si,
-Soporte giratorio (Standard 4 y 4X / Enterprise),880,si,si,
-Soporte de pared Standard 4 o 4X,815,si,si,
-Soporte para cresta Standard 4 o 4X,2840,si,si,
-Masonry Routing Kit,529,si,si,
-Cable Routing Kit,469,si,si,
-Router 3 (Starlink V4 o V5 / Mini),1100,si,si,
-Adaptador de tubo Standard 4 o 4X,565,si,si,"Para montar el plato en mastil/tubo de la torre"
-Cable Ethernet Starlink Performance (Gen 3) de 5 m,70,si,si,
-Fuente de alimentacion avanzada (Performance Gen 3 / Standard 4 / 4X),1800,si,si,
-Router Mini,490,si,si,
-Adaptador de soporte Standard 4 o 4X a Standard motorizado,410,si,si,
-Base de estructura en cruz (Standard 4 o 4X / Enterprise),730,si,si,
-Cable Ethernet para Starlink Mini de 15 m,380,si,no,
-Cable Starlink de 45 m,1220,si,si,"Unico cable largo listado; torre de 30 m"
-Soporte del Router 3,455,no,si,
-Cable Starlink de 15 m,670,no,si,
+linea,articulo,precio_GTQ,nota
+Empresas Performance (Gen 3),Cable Ethernet para Starlink Performance (Gen 3) de 5 m,70,
+Empresas Performance (Gen 3),Cable para Starlink Performance (Gen 2) de 25 m,870,
+Empresas Performance (Gen 3),Router 3 (sin PSU) Performance (Gen 3),1100,"No se usa: la red usa router/PoE propio"
+Empresas Performance (Gen 3),Cable Starlink Performance (Gen 3) de 50 m,1300,"Torre de 30 m: plato en lo alto + tramo al gabinete"
+Empresas Performance (Gen 3),Cable Starlink Performance (Gen 3) de 5 m,440,
+Empresas Performance (Gen 3),Fuente de alimentacion avanzada (Performance Gen 3 / Standard 4 / 4X),1800,"Opcional: permite alimentar en DC desde las baterias"
+Empresas Performance (Gen 3),Adaptador de tubo Performance (Gen 3),480,"Para montar el plato en el mastil de la torre"
+Empresas Performance (Gen 3),Soporte plano Performance (Gen 3),830,
+Empresas Performance (Gen 3),Soporte de pared Performance (Gen 3),830,
+Empresas Performance (Gen 3),Soporte inclinado Performance (Gen 3),700,
+Empresas Performance (Gen 3),Router Mini,490,
+Empresas Performance (Gen 3),Cable Ethernet para Starlink Mini de 15 m,380,
+Empresas Performance (Gen 3),Soporte del Router 3,455,
+Personal Standard 4 / 4X,Soporte para movilidad Standard 4 o 4X,626,"Referencia; no se usa"
+Personal Standard 4 / 4X,Soporte giratorio (Standard 4 y 4X / Enterprise),880,
+Personal Standard 4 / 4X,Soporte de pared Standard 4 o 4X,815,
+Personal Standard 4 / 4X,Soporte para cresta Standard 4 o 4X,2840,
+Personal Standard 4 / 4X,Masonry Routing Kit,529,
+Personal Standard 4 / 4X,Cable Routing Kit,469,
+Personal Standard 4 / 4X,Adaptador de tubo Standard 4 o 4X,565,
+Personal Standard 4 / 4X,Adaptador de soporte Standard 4 o 4X a Standard motorizado,410,
+Personal Standard 4 / 4X,Base de estructura en cruz,730,
+Personal Standard 4 / 4X,Cable Starlink de 45 m,1220,
+Personal Standard 4 / 4X,Cable Starlink de 15 m,670,

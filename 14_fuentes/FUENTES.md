@@ -17,12 +17,18 @@
 | F13 | 109 casas numeradas y vista oblicua | Capturas propias Google Earth (`evidencias/casas_numeradas_109.png`, `earth_vista_oblicua_babilonia.png`) | 25-oct-2026 | Primaria |
 | F14 | Promedio nacional de personas por hogar: 4.5 (2018) | https://www.ces.uvg.edu.gt/censo2018/documentos/infografias.pdf | 25-oct-2026 | Secundaria (infografía del Censo 2018; no incluye Alta Verapaz) |
 | F15 | Perfiles de elevación Google Earth P1–P6 (casas 25, 93, 55, 5, 109, 31 ↔ torre): largos 422.2 / 405.9 / 160.0 / 200.9 / 404.8 / 338.2 m; elevaciones mín.–máx. 205.2–237.9 m | Capturas propias Google Earth (`evidencias/perfil_P*`); digitalizado en `04_propagacion_linkbudget/perfiles_google_earth.json` | 26-oct-2026 | Primaria (digitalización ±0.5 m) |
-| F16 | Precios de accesorios Starlink (Standard 4 / 4X) en GTQ | Capturas propias starlink.com/gt/public/shop (`evidencias/starlink_accesorios_standard4*.png`); tabla `07_costos/precios_starlink_accesorios_GTQ.csv` | 26-oct-2026 | Primaria |
+| F16 | Precios de accesorios Starlink línea Personal (Standard 4 / 4X) en GTQ | Capturas propias starlink.com/gt/public/shop (`evidencias/starlink_accesorios_standard4*.png`); tabla `07_costos/precios_starlink_accesorios_GTQ.csv` | 26-oct-2026 | Primaria |
 | F17 | Modelo de atenuación por follaje de Weissberger: 1.33·f^0.284·d^0.588 (14 < d ≤ 400 m), 0.45·f^0.284·d (d ≤ 14 m) | https://arxiv.org/pdf/2511.11449 (Ec. 10); original: Weissberger, 1982 (DTIC ADA118343, https://apps.dtic.mil/sti/pdfs/ADA118343.pdf, no revisado) | 26-oct-2026 | Secundaria; f en GHz y d en m según la formulación original |
+| F18 | Starlink Performance (Gen 3): 75–100 W medio, 100–240 V, −40 a 60 °C, IP68/IP69K, FOV 140°, 609×396×40 mm, 5.2 kg | https://www.speedcast.com/shop/starlink-performance-gen3-kit/ | 26-oct-2026 | Distribuidor (sin precio) |
+| F19 | Rebaja Performance: US$1,499 → US$999 (jul-2025, hasta el 7 jul o agotar existencias) | https://www.notebookcheck.org/Starlink-baja-el-precio-del-plato-Performance-en-500-dolares-para-hacer-sitio-al-modelo-de-velocidad-gigabit.1050831.0.html | 26-oct-2026 | Prensa (precio vigente en 2026 no verificado) |
+| F20 | Lanzamiento Performance: US$1,999, ≈ 70 W, IP69K, puerto Ethernet para routers de terceros, 470/48 Mbps | https://www.enter.co/?p=573336 | 26-oct-2026 | Prensa (jun-2025) |
+| F21 | Consumo Starlink: Gen 3 Standard 75–100 W medio, ≈ 20 W en reposo; Gen 2 High Performance 110–150 W | https://www.dishytech.com/how-much-power-does-starlink-use/ | 26-oct-2026 | Secundaria |
+| F22 | Tipo de cambio: 7.6445 GTQ por USD (26-oct-2026) | https://ru.tradingeconomics.com/usdgtq:cur | 26-oct-2026 | Secundaria (referencia Banguat no obtenida) |
+| F23 | Accesorios Starlink línea Empresas Performance (Gen 3) y categorías de la tienda | Capturas propias (`evidencias/starlink_accesorios_performance_gen3.png`, `starlink_tienda_categorias.png`); tabla `07_costos/precios_starlink_accesorios_GTQ.csv` | 26-oct-2026 | Primaria |
 
 ## Por verificar
 - Bandas de uso libre vigentes en TNAF (2.4 / 5 GHz): sin confirmación todavía.
-- Precio del kit Starlink (Standard 4 / 4X) y consumo eléctrico en W (los accesorios ya están en F16).
+- Precio vigente del plato Performance en Guatemala (hoy es estimación, ver `07_costos/plato_starlink_referencia.md`).
 - Personas por hogar en Alta Verapaz rural (INE).
 - Altura de copas (supuesto D11).
 - Datasheets de antenas/radios (E2).
