@@ -1,50 +1,54 @@
-# E2 — Arquitectura (v2, 25-oct-2026)
+# E2 — Arquitectura (v3, 26-oct-2026)
 
 ## 1. ¿Tan poco equipo cubre la zona?
-**En distancia, sí.** La casa más lejana está a 382 m de la torre central; un radio sectorial de 5 GHz alcanza más de 1 km con línea de vista. Lo que limita no es el alcance sino: (a) el **relieve** (el centro es el punto más bajo, 206 m vs 215–247 m en las esquinas), (b) la **vegetación** (copas de 20–25 m entre las casas), (c) las **casas cercanas** a la torre (20 de 109 a ≤ 100 m, fuera del haz vertical) y (d) la **capacidad** por sector.
+**En distancia, sí:** la casa más lejana está a 420 m y un radio de 5 GHz con línea de vista llega a más de 1 km. Los datos medidos muestran que:
+- **El relieve no limita:** con terreno desnudo, todas las casas ven la torre (el extremo este queda 30 m más alto que la base, pero el perfil sube de forma suave hasta los últimos ~70 m).
+- **La vegetación sí:** 53 % de la imagen es copa y el rayo atraviesa una mediana de 18 m de follaje con torre de 30 m (p90: 73 m).
+- **Las casas cercanas** (14 a ≤ 100 m, 2 a ≤ 60 m) quedan fuera del haz vertical y se tratan con inclinación y márgenes.
+- **La capacidad** (≈ 30–35 Mbps de pico por sector en el año 3).
 
-Por eso el diseño tiene pocos equipos, pero cada decisión se calcula: 3 sectores co-ubicados con plan de frecuencias, enlaces por tramo de distancia, pérdida por follaje, ángulo de inclinación, interferencia entre sectores, enlace de subida y capacidad.
+Por eso hay pocos equipos, pero cada decisión se calcula: tres sectores co-ubicados, plan de frecuencias, enlaces por rango de distancia, pérdida por follaje, inclinación, interferencia, subida y capacidad.
 
-## 2. Decisión (preliminar, validar con perfiles en E3)
-- **1 torre central** en el claro (15.88908, -90.53177) con **Starlink + 3 sectores 5 GHz de 120°**.
-- Sectores (azimut desde el norte), balanceados por casas:
+## 2. Decisión (v3)
+- **1 torre central ventada de 30 m** en el claro (15.88908, -90.53177): **Starlink + 3 sectores 5 GHz de 120°**.
+- **Por qué 30 m:** con 24 m, 11 casas superarían 30 dB de pérdida por follaje; con 30 m, 4; con 36 m, 2 (poco beneficio extra y más costo). No se intenta "despejar" las copas (haría falta > 100 m): se presupuesta la pérdida.
+- **Sectores** (azimut desde el norte), equilibrados por casas:
 
-| Sector | Azimut | Casas | Dist. máx. |
-|---|---|---|---|
-| S1 | 95°–215° (este-sur-suroeste) | 31 | 365 m |
-| S2 | 215°–335° (oeste-noroeste) | 39 | 382 m |
-| S3 | 335°–95° (norte-noreste) | 39 | 364 m |
+| Sector | Azimut | Casas | Dist. máx. | Pico año 3 |
+|---|---|---|---|---|
+| S1 | 90°–210° (este-sur-suroeste) | 37 | 405 m | 33 Mbps |
+| S2 | 210°–330° (oeste-noroeste) | 39 | 421 m | 35 Mbps |
+| S3 | 330°–90° (norte-noreste) | 33 | 402 m | 30 Mbps |
 
-Figura: `11_informe_latex/figuras/fig_aldea_sectores_prelim.png`. Lista por casa: `01_comunidad_demanda/casas_109_coordenadas_aprox.csv`.
-- **Altura de torre provisional: 24 m** (para presupuestar). Con el modelo de terreno preliminar, a 18 m unas 25 casas quedarían con el techo sobre la punta de la torre; a 24 m unas 12; a 30 m unas 7. Ese modelo sobrestima el relieve (usa esquinas en bosque), así que la altura final sale de los perfiles reales.
-- **Contingencia con regla de decisión:** si en E3 más del 10 % de las casas no cumple despeje del 60 % de la primera zona de Fresnel con copas de 20 m, se añade un **Nodo Este** (zona alta, ~247 m) alimentado por enlace punto a punto 5 GHz desde la torre. Si no, se mantiene una sola torre.
-- **Una CPE por casa** (exterior, 20–23 dBi, a ~6 m sobre el techo) + router Wi-Fi interior. Capacidad de diseño: 109 CPE (65 el año 1).
+Figura: `11_informe_latex/figuras/fig_aldea_sectores_prelim.png`.
+- **Una CPE por casa** (exterior, 20–23 dBi) en mástil de 6 m sobre el techo (casas con árbol al lado: elegir lado y altura despejados). Capacidad de diseño: 109 CPE (65 el año 1).
 - **2 hotspots comunitarios** (lugares por definir; la escuela figura cerrada en Maps).
-- **Un solo Starlink Business** (Prioridad Local); segundo terminal en fase 2 si el uso pico supera el 70 %.
+- **1 Starlink Business** (Prioridad Local) en la torre; plato en tubo con adaptador de tubo; cable Starlink de 45 m. Segundo terminal en fase 2.
 
-## 3. Alternativas comparadas
+## 3. Contingencia con regla de decisión (reemplaza a la regla v2)
+Al terminar el presupuesto de enlace (E3) con equipos reales: si **más de 6 casas (≈ 5 %)** quedan con margen < 10 dB, se aplican en orden: (1) CPE de mayor ganancia o mástil de 10 m en esas casas; (2) nodo de relevo en la zona alta del este (≈ 237 m) enlazado por punto a punto; (3) más altura de torre. Casas candidatas: 26, 27, 97, 30, 5, 6, 3, 104, 107.
+
+## 4. Alternativas comparadas
 | | A — Torre central PtMP 5 GHz (elegida) | B — Malla Wi-Fi exterior |
 |---|---|---|
 | Topología | 1 torre, 3 sectores, CPE por casa | 8–10 nodos en postes, multisalto |
 | Sitios con energía solar | 1 | 8–10 |
-| Capacidad | Predecible; 28–35 Mbps pico por sector | Cae con cada salto |
-| Riesgo | Línea de vista a los extremos | Mantenimiento y robo de nodos; latencia |
-| Costo relativo | Menor | Mayor (energía por nodo) |
+| Capacidad | Predecible; ≈ 30–35 Mbps por sector | Cae con cada salto |
+| Efecto del follaje | Un solo trayecto largo por casa | Trayectos cortos pero muchos saltos y puntos de falla |
+| Costo relativo | Menor | Mayor (energía y mantenimiento por nodo) |
 
-## 4. Equipos a fijar con datasheet (siguiente paso)
+## 5. Equipos (siguiente paso: fichas técnicas)
 | Rol | Cantidad | Tipo preliminar |
 |---|---|---|
-| Backhaul satelital | 1 | Starlink Business (Estándar o Alto Rendimiento: **confirmar en tienda**) |
+| Backhaul satelital | 1 | Starlink Standard 4 (o 4X) para Business; kit y consumo: **pendiente de precio** (ver tareas) |
 | Radio + antena sectorial 5 GHz | 3 | PtMP, sector 120° (o 90° + solape), ~16–18 dBi, inclinación mecánica |
-| Switch/router PoE | 1 | Con 4–6 puertos PoE |
-| CPE exterior | 109 (65 año 1) | 5 GHz, 20–23 dBi |
+| Switch/router PoE | 1 | 4–6 puertos PoE |
+| CPE exterior | 109 (65 año 1) | 5 GHz, 20–23 dBi, PoE |
 | Router Wi-Fi interior | 109 | Wi-Fi 5/6 económico |
 | Hotspots | 2 | AP exterior 2.4/5 GHz |
-| Torre | 1 | Ventada, 24 m (provisional) |
+| Torre | 1 | Ventada, 30 m |
 | Energía | 1 sistema | FV + LiFePO₄ (E5) |
+| Accesorios Starlink | — | Adaptador de tubo Q565, cable 45 m Q1,220, fuente avanzada Q1,800 (opcional según kit) |
 
-## 5. Herramientas
-- **CloudRF**: principal (cobertura, enlaces, clutter/vegetación, exportables).
-- **UISP Design Center**: apoyo para línea de vista y Fresnel (comparación basada en conocimiento general; se confirma al usarla).
-- **Google Earth Pro**: perfiles de elevación, KMZ.
-- **Python/Excel**: cálculos propios, siempre; el simulador se usa para contrastar.
+## 6. Herramientas
+CloudRF (principal) · UISP Design Center (apoyo) · Google Earth Pro (perfiles/KMZ) · Python/Excel (cálculos propios; el simulador contrasta).

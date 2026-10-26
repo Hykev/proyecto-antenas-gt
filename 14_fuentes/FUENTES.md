@@ -16,10 +16,13 @@
 | F12 | Elevaciones (m s. n. m.): centro 206, esquinas 215 / 239 / 227 / 247 | Capturas propias Google Earth (`evidencias/elev_*`) | 25-oct-2026 | Primaria |
 | F13 | 109 casas numeradas y vista oblicua | Capturas propias Google Earth (`evidencias/casas_numeradas_109.png`, `earth_vista_oblicua_babilonia.png`) | 25-oct-2026 | Primaria |
 | F14 | Promedio nacional de personas por hogar: 4.5 (2018) | https://www.ces.uvg.edu.gt/censo2018/documentos/infografias.pdf | 25-oct-2026 | Secundaria (infografía del Censo 2018; no incluye Alta Verapaz) |
+| F15 | Perfiles de elevación Google Earth P1–P6 (casas 25, 93, 55, 5, 109, 31 ↔ torre): largos 422.2 / 405.9 / 160.0 / 200.9 / 404.8 / 338.2 m; elevaciones mín.–máx. 205.2–237.9 m | Capturas propias Google Earth (`evidencias/perfil_P*`); digitalizado en `04_propagacion_linkbudget/perfiles_google_earth.json` | 26-oct-2026 | Primaria (digitalización ±0.5 m) |
+| F16 | Precios de accesorios Starlink (Standard 4 / 4X) en GTQ | Capturas propias starlink.com/gt/public/shop (`evidencias/starlink_accesorios_standard4*.png`); tabla `07_costos/precios_starlink_accesorios_GTQ.csv` | 26-oct-2026 | Primaria |
+| F17 | Modelo de atenuación por follaje de Weissberger: 1.33·f^0.284·d^0.588 (14 < d ≤ 400 m), 0.45·f^0.284·d (d ≤ 14 m) | https://arxiv.org/pdf/2511.11449 (Ec. 10); original: Weissberger, 1982 (DTIC ADA118343, https://apps.dtic.mil/sti/pdfs/ADA118343.pdf, no revisado) | 26-oct-2026 | Secundaria; f en GHz y d en m según la formulación original |
 
 ## Por verificar
 - Bandas de uso libre vigentes en TNAF (2.4 / 5 GHz): sin confirmación todavía.
-- Precio del kit Starlink Business (plan ya confirmado).
+- Precio del kit Starlink (Standard 4 / 4X) y consumo eléctrico en W (los accesorios ya están en F16).
 - Personas por hogar en Alta Verapaz rural (INE).
 - Altura de copas (supuesto D11).
 - Datasheets de antenas/radios (E2).

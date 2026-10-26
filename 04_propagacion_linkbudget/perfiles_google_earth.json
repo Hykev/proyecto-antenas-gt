@@ -1,0 +1,258 @@
+[
+ {
+  "perfil": "P1",
+  "casa": 25,
+  "largo_m": 422.21,
+  "azimut_torre_a_casa_deg": 281.03,
+  "sentido_captura": "casa->torre",
+  "puntos_dist_desde_torre_m_elev_m": [
+   [
+    0.0,
+    206.2
+   ],
+   [
+    3.21,
+    206.1
+   ],
+   [
+    45.21,
+    205.3
+   ],
+   [
+    111.21,
+    205.8
+   ],
+   [
+    146.21,
+    205.8
+   ],
+   [
+    198.21,
+    205.9
+   ],
+   [
+    241.21,
+    207.2
+   ],
+   [
+    267.21,
+    207.7
+   ],
+   [
+    340.21,
+    210.7
+   ],
+   [
+    417.21,
+    209.0
+   ],
+   [
+    422.21,
+    209.5
+   ]
+  ],
+  "min_max_mediana_google": {
+   "min": 205.2,
+   "mediana": 206.44,
+   "max": 210.73
+  }
+ },
+ {
+  "perfil": "P2",
+  "casa": 93,
+  "largo_m": 405.9,
+  "azimut_torre_a_casa_deg": 87.1,
+  "sentido_captura": "torre->casa",
+  "puntos_dist_desde_torre_m_elev_m": [
+   [
+    0,
+    206.1
+   ],
+   [
+    35,
+    207.2
+   ],
+   [
+    102,
+    211.0
+   ],
+   [
+    179,
+    213.6
+   ],
+   [
+    256,
+    212.1
+   ],
+   [
+    331,
+    218.0
+   ],
+   [
+    405.9,
+    237.9
+   ]
+  ],
+  "min_max_mediana_google": {
+   "min": 206.06,
+   "mediana": 211.93,
+   "max": 237.93
+  }
+ },
+ {
+  "perfil": "P3",
+  "casa": 55,
+  "largo_m": 160.03,
+  "azimut_torre_a_casa_deg": 42.33,
+  "sentido_captura": "casa->torre",
+  "puntos_dist_desde_torre_m_elev_m": [
+   [
+    0.0,
+    206.1
+   ],
+   [
+    51.03,
+    208.0
+   ],
+   [
+    109.03,
+    210.0
+   ],
+   [
+    130.03,
+    211.4
+   ],
+   [
+    160.03,
+    211.6
+   ]
+  ],
+  "min_max_mediana_google": {
+   "min": 206.06,
+   "mediana": 209.09,
+   "max": 211.55
+  }
+ },
+ {
+  "perfil": "P4",
+  "casa": 5,
+  "largo_m": 200.92,
+  "azimut_torre_a_casa_deg": 232.91,
+  "sentido_captura": "casa->torre",
+  "puntos_dist_desde_torre_m_elev_m": [
+   [
+    0.0,
+    206.1
+   ],
+   [
+    35.92,
+    205.45
+   ],
+   [
+    50.92,
+    205.5
+   ],
+   [
+    100.92,
+    205.2
+   ],
+   [
+    175.92,
+    205.8
+   ],
+   [
+    200.92,
+    205.6
+   ]
+  ],
+  "min_max_mediana_google": {
+   "min": 205.21,
+   "mediana": 205.56,
+   "max": 206.07
+  }
+ },
+ {
+  "perfil": "P5",
+  "casa": 109,
+  "largo_m": 404.82,
+  "azimut_torre_a_casa_deg": 99.65,
+  "sentido_captura": "casa->torre",
+  "puntos_dist_desde_torre_m_elev_m": [
+   [
+    0.0,
+    206.0
+   ],
+   [
+    66.82,
+    207.3
+   ],
+   [
+    136.82,
+    211.0
+   ],
+   [
+    206.82,
+    212.5
+   ],
+   [
+    272.82,
+    212.1
+   ],
+   [
+    342.82,
+    216.7
+   ],
+   [
+    404.82,
+    236.5
+   ]
+  ],
+  "min_max_mediana_google": {
+   "min": 206.03,
+   "mediana": 212.0,
+   "max": 236.49
+  }
+ },
+ {
+  "perfil": "P6",
+  "casa": 31,
+  "largo_m": 338.19,
+  "azimut_torre_a_casa_deg": 294.27,
+  "sentido_captura": "casa->torre",
+  "puntos_dist_desde_torre_m_elev_m": [
+   [
+    0.0,
+    206.0
+   ],
+   [
+    36.19,
+    205.6
+   ],
+   [
+    121.19,
+    207.1
+   ],
+   [
+    185.19,
+    208.0
+   ],
+   [
+    235.19,
+    212.2
+   ],
+   [
+    278.19,
+    213.5
+   ],
+   [
+    338.19,
+    214.9
+   ]
+  ],
+  "min_max_mediana_google": {
+   "min": 205.62,
+   "mediana": 207.61,
+   "max": 214.91
+  }
+ }
+]

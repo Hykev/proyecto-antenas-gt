@@ -1,40 +1,35 @@
-# TAREAS PARA TI (actualizado 25-oct-2026)
+# TAREAS PARA TI (actualizado 26-oct-2026)
 
 ## Hechas
-- Aldea Babilonia (109 casas numeradas, 5 elevaciones), Starlink (bajada, subida, latencia, planes), nombres del equipo.
+Aldea, 109 casas, elevaciones de esquinas, 6 perfiles de elevación, subida y latencia de Starlink, precios de accesorios, nombres del equipo.
 
-## AHORA (en este orden)
+## AHORA
 
-### 1. Crear el repositorio vacío en GitHub (2 min) — necesario para subir todo
-Mi sesión **no puede crear repositorios** (GitHub me lo bloquea); sí puedo subir a uno que ya exista.
-1. Entra a <https://github.com/new>.
-2. Owner: tu usuario. Nombre: `proyecto-antenas-gt`. Marca **Private**. **No** agregues README ni .gitignore.
-3. Pulsa *Create repository* y avísame. Yo lo conecto y subo todo el historial.
+### 1. Dar permiso a Claude para escribir en tu repo de GitHub (3 min)
+El repo `Hykev/proyecto-antenas-gt` existe y mi sesión lo ve, pero **GitHub rechaza mis pushes** porque la app de Claude no está instalada en tu cuenta.
+1. Entra a <https://github.com/apps/claude/installations/select_target>, elige tu cuenta (**Hykev**).
+2. Elige *Only select repositories* → `proyecto-antenas-gt` → *Install*.
+3. Si ya estaba instalada, reconecta GitHub en <https://claude.ai/customize/connectors?auth_start=github&auth_start_force=1> y vuelve a autorizar.
+4. Avísame y subo todo.
 
-### 2. Confirmar la esquina superior derecha
-Tu mensaje decía 214 m, pero la captura muestra **239 m**. Dime cuál es la correcta (usé 239 m).
+**Mientras tanto (plan B, 2 min):** te mandé `proyecto-antenas-gt.bundle`, que contiene todo el historial. Desde tu computadora:
+```
+git clone proyecto-antenas-gt.bundle proyecto-antenas-gt
+cd proyecto-antenas-gt
+git remote set-url origin https://github.com/Hykev/proyecto-antenas-gt.git
+git push -u origin main
+```
 
-### 3. Corregir las posiciones de las casas en Google Earth Pro (15–20 min)
-1. Abre `10_cartografia_kmz/babilonia_preliminar.kmz` (doble clic o *Archivo → Abrir*).
-2. Revisa estos 6 puntos de referencia: casas **25, 1, 31, 55, 93, 109**. Deben caer sobre su casa; si están corridos, arrástralos.
-3. Si el error es parecido en todas (por ejemplo, todo corrido 30 m al este), dime cuánto y en qué dirección y yo corrijo las 109 con eso.
-4. Si arreglaste varias: clic derecho en la carpeta *Casas* → *Guardar lugar como…* → KMZ → mándamelo.
+### 2. Precio del kit Starlink y su consumo eléctrico
+En la misma página de la tienda (<https://starlink.com/gt/public/shop?tag=PRD_TAG-V4>), **arriba de los accesorios**, deben aparecer los kits (Standard 4, Standard 4X, Mini, etc.). Mándame captura con su **precio** y, si la tienda tiene la ficha técnica, el **consumo en vatios**. No encontré "Alto Rendimiento": el catálogo lista "Performance (Gen 3)" solo como compatible de accesorios. El consumo lo necesito para dimensionar los paneles solares.
 
-### 4. Perfiles de elevación (lo que más necesito para E3) (20–30 min)
-En Google Earth Pro de escritorio: *Añadir → Ruta*, traza la línea, guarda, clic derecho sobre la ruta → **Mostrar perfil de elevación**. Captura pantalla de cada perfil (que se vean las alturas mínima, máxima y la forma). Trazos:
-- **P1:** casa 25 (extremo oeste) → torre (claro central) → casa 93 (extremo este).
-- **P2:** casa 55 (norte) → torre → casa 5 (sur).
-- **P3:** torre → casa 109 (sureste).
-- **P4:** torre → casa 31 (noroeste).
-Además, lee la elevación (como hiciste en las esquinas) de las casas **25, 1, 31, 55, 93, 109, 107, 103**.
+### 3. Corrige las posiciones en Google Earth solo si notas errores grandes
+Abre `10_cartografia_kmz/babilonia_preliminar.kmz` (ya con la calibración nueva). Con los 6 vectores que mediste, las casas de control tienen error de 2–9 m; las demás deberían estar en ±10 m. Si ves alguna fuera de su casa por más de 20 m, avísame el número.
 
-### 5. Precios de hardware Starlink Business
-En <https://www.starlink.com/gt/business> (o en el pedido, sin pagar) anota el precio del kit **Estándar** y **Alto Rendimiento** si aparecen, y de los accesorios de montaje en poste/pared. Captura y guárdala en `14_fuentes/evidencias/`.
-
-## DESPUÉS (cuando te lo pida)
-- Parámetros exactos de CloudRF (los doy al cerrar la selección de equipos).
+## DESPUÉS (no hagas nada todavía)
+- Parámetros de CloudRF (cuando fije los equipos).
 - 3–5 precios locales de equipos (E5).
-- Si el profesor prefiere población ≈ 300, dímelo: bajaría a 3.2 hab/vivienda (ver `DECISIONES.md`, D03).
+- Si el profesor prefiere población ≈ 300: 3.2 hab/vivienda (`DECISIONES.md`, D03).
 
-## Nota sobre copas de árboles
-No necesitas medirlas: supongo 20–25 m entre casas y 25–30 m en los bordes (D11), y lo dejo como supuesto declarado en el informe.
+## Lo que ya no necesito
+Perfiles de elevación, elevaciones de casas, altura de árboles (usé 20 m como supuesto declarado, con sensibilidad en E3).
