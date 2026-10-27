@@ -1,0 +1,10 @@
+escenario,casas_enlace_util_DL_y_UL,margen_min_DL_dB,margen_min_UL_dB,margen_mediano_DL_dB,util_max_DL,casas_follaje_>30dB
+"Base: torre 30 m, copa 20 m",109,16.4,13.4,45.1,0.48,4
+Torre 24 m,108,11.3,8.3,43.9,0.56,11
+Torre 36 m,109,20.1,17.1,43.9,0.46,2
+Copa 15 m,109,25.5,22.5,48.6,0.42,1
+Copa 25 m,108,8.7,5.7,40.7,0.54,16
+Copa 25 m + torre 24 m,106,2.7,-0.3,43.1,0.62,19
+Desvanecimiento extra 6 dB (lluvia fuerte/arboles mojados),108,10.4,7.4,39.1,0.65,4
+Error de montaje +2 grados inclinacion,109,14.4,11.4,45.4,0.51,4
+Error de montaje +4 grados inclinacion,105,6.6,3.6,45.1,0.52,4
