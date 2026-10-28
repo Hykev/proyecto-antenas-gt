@@ -1,0 +1,23 @@
+<section id="s10-enlace" data-transition="fade" style="background:#F5F3EC;color:#1B2A35;font-family:'DM Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:36px">
+<div style="display:flex;flex-direction:column;gap:12px">
+<p style="font-size:28px;letter-spacing:2px;text-transform:uppercase;color:#146B6B;font-weight:500">Presupuesto de enlace</p>
+<h2 style="font-size:64px;font-weight:700;line-height:1.1;color:#0E2433">Ejemplo del peor caso: casa 26, subida</h2>
+</div>
+<div style="background:#0E2433;padding:32px 40px;border-radius:12px"><p style="font-size:32px;line-height:1.4;color:#F5F3EC">Pr = Pt + G<span style="color:#E3A63A">AP,ef</span> − L<span style="color:#E3A63A">jumper</span> + G<span style="color:#E3A63A">CPE</span> − FSPL − L<span style="color:#E3A63A">follaje</span> − L<span style="color:#E3A63A">desalin.</span> − L<span style="color:#E3A63A">lluvia</span></p></div>
+<div style="display:flex;gap:48px">
+<table style="font-size:28px;color:#1B2A35;flex:1">
+<tr><th style="width:62%;text-align:left;background:#0E2433;color:#F5F3EC">Término</th><th style="width:38%;text-align:right;background:#0E2433;color:#F5F3EC">Valor</th></tr>
+<tr style="background:#FBFAF6"><td>Distancia 3D (sector S2)</td><td style="text-align:right">398.6 m</td></tr>
+<tr><td>Ganancia efectiva del AP</td><td style="text-align:right">15.1 dBi</td></tr>
+<tr style="background:#FBFAF6"><td>FSPL a 5.8 GHz</td><td style="text-align:right">99.7 dB</td></tr>
+<tr><td>Follaje: 147 m (Weissberger)</td><td style="text-align:right">41.2 dB</td></tr>
+<tr style="background:#FBFAF6"><td>Tx del CPE + ganancia del CPE</td><td style="text-align:right">25 dBm + 23 dBi</td></tr>
+</table>
+<div style="flex:1;display:flex;flex-direction:column;gap:20px;justify-content:center">
+<div style="display:flex;flex-direction:column;gap:4px"><p style="font-size:28px;color:#3D4852">Potencia recibida</p><p style="font-size:64px;font-weight:700;color:#0E2433;line-height:1">−79.6 dBm</p></div>
+<div style="display:flex;flex-direction:column;gap:4px"><p style="font-size:28px;color:#3D4852">Margen sobre BPSK 1/2 (−96 dBm + 3 dB)</p><p style="font-size:64px;font-weight:700;color:#146B6B;line-height:1">13.4 dB ≥ 10</p></div>
+</div></div>
+<p style="position:absolute;left:128px;bottom:64px;width:1200px;font-size:24px;color:#6B7782">Babilonia · Antenas y Propagación 2026 · Presenta: Maximiliano</p>
+<p style="position:absolute;right:128px;bottom:64px;width:200px;font-size:24px;text-align:right;color:#6B7782">10</p>
+<aside>MAXIMILIANO (90 s). Calculamos el presupuesto de enlace para cada una de las 109 casas, en bajada y en subida. La potencia recibida es la potencia de transmisión más la ganancia efectiva de la antena del sector, ya descontados los desfases respecto a su eje, menos pérdidas de jumper, más la ganancia de la antena de casa, menos la pérdida en espacio libre, el follaje, la desalineación y la lluvia. Les muestro el peor caso, la casa 26, en el sector S2, en subida. Está a 398 metros; la ganancia efectiva del sector hacia ella es 15.1 dBi; la pérdida en espacio libre a 5.8 GHz es 99.7 dB; el rayo atraviesa 147 metros de follaje, que con Weissberger son 41.2 dB. Transmitiendo 25 dBm con una antena de 23 dBi, la potencia recibida es menos 79.6 dBm. La sensibilidad de BPSK es menos 96, que con 3 dB de penalización conservadora por el canal de 20 MHz son menos 93: el margen es 13.4 dB, sobre nuestro mínimo de 10. Incluso el peor enlace cumple.</aside>
+</section>
