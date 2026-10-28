@@ -25,14 +25,16 @@
 | F21 | Consumo Starlink: Gen 3 Standard 75–100 W medio, ≈ 20 W en reposo; Gen 2 High Performance 110–150 W | https://www.dishytech.com/how-much-power-does-starlink-use/ | 26-oct-2026 | Secundaria |
 | F22 | Tipo de cambio: 7.6445 GTQ por USD (26-oct-2026) | https://ru.tradingeconomics.com/usdgtq:cur | 26-oct-2026 | Secundaria (referencia Banguat no obtenida) |
 | F23 | Accesorios Starlink línea Empresas Performance (Gen 3) y categorías de la tienda | Capturas propias (`evidencias/starlink_accesorios_performance_gen3.png`, `starlink_tienda_categorias.png`); tabla `07_costos/precios_starlink_accesorios_GTQ.csv` | 26-oct-2026 | Primaria |
-
 | F24 | Rocket Prism 5AC Gen2: 28 dBm, sensibilidad por MCS, 9.5 W | https://www.netxl.com/ubiquiti/docs/Rocket%20Prism%20AC%20Gen2%20Datasheet.pdf | 26-oct-2026 | Hoja de datos (distribuidor) |
 | F25 | AM-5G16-120: 15–16 dBi, 137°/118°, 8° elev., VSWR 1.5, 1.1 kg, US$79 | https://uk.store.ui.com/uk/en/products/am-5g1 | 26-oct-2026 | Tienda del fabricante |
 | F26 | AM-5G19-120: 18.6–19.1 dBi, 4° elev., 5.9 kg | csd.com.au, 4cabling | 26-oct-2026 | Distribuidor |
 | F27 | LiteBeam 5AC Gen2: 23 dBi, 25 dBm, −96 dBm, 7 W, US$64.83 | https://store.ui.com; CDW | 26-oct-2026 | Fabricante/distribuidor |
+| F28 | Bandas 5 GHz de Guatemala según referencia regional: 5150–5250, 5250–5350, 5725–5850 MHz (potencia, EIRP y DFS por verificar en TNAF vigente) | https://flyteccomputers.com/blog/5-ghz-frequency-reference-for-latin-america-and-the-caribbean/ | 27-oct-2026 | Secundaria; TNAF oficial no accesible |
+| F29 | Batería LiFePO4 Relion RB48V100: 51.2 V, 100 Ah, 5.12 kWh, US$3,495.95 | https://www.solar-electric.com/relion-rb48v100-lithium-ion-battery-48v.html | 27-oct-2026 | Distribuidor |
+| F30 | Panel solar 550 W, 144 celdas monocristalino (formato estándar); precio US$165 es estimación | https://a1solarstore.com/solar-panels/550-watt-solar-panels.html?page_id=93 | 27-oct-2026 | Solo formato; precio estimado |
 
 ## Por verificar
-- Bandas de uso libre vigentes en TNAF (2.4 / 5 GHz): sin confirmación todavía.
+- Texto oficial de la TNAF (potencia máxima y condiciones en 5725–5850 MHz): no accesible desde el entorno; F28 es secundaria.
 - Precio vigente del plato Performance en Guatemala (hoy es estimación, ver `07_costos/plato_starlink_referencia.md`).
 - Personas por hogar en Alta Verapaz rural (INE).
 - Altura de copas (supuesto D11).
