@@ -20,10 +20,10 @@ def arrow(ax, a, b, t=''):
     if t: ax.text((a[0] + b[0]) / 2, (a[1] + b[1]) / 2 + .12, t, ha='center', fontsize=7)
 fig, ax = plt.subplots(figsize=(10, 4.6)); ax.set_xlim(0, 10); ax.set_ylim(0, 4.6); ax.axis('off')
 box(ax, .1, 3.2, 1.6, .9, 'Constelación\nStarlink', '#e8e8e8'); box(ax, 2.2, 3.2, 1.9, .9, 'Plato Starlink\nPerformance Gen 3\n(torre, 30 m)', '#fff2cc')
-box(ax, 2.2, 1.8, 1.9, .9, 'Router + switch PoE\n(gabinete, torre)', '#dbe9f7'); box(ax, 2.2, .3, 1.9, .9, 'Solar: 3×550 W\n+ 2 baterías 5.12 kWh', '#e2f0d9')
+box(ax, 2.2, 1.8, 1.9, .9, 'Router + switch PoE\n(gabinete, torre)', '#dbe9f7');
 for i, (s, ch) in enumerate((('S1', '5745'), ('S2', '5785'), ('S3', '5825'))): box(ax, 5.0, 3.3 - i * 1.15, 2.0, .85, f'Rocket Prism + AM-5G16-120\nSector {s} · {ch} MHz', '#dbe9f7', 7)
 box(ax, 7.8, 3.3, 2.0, .85, 'CPE LiteBeam 5AC\n(38 casas, S1)', '#fce4d6'); box(ax, 7.8, 2.15, 2.0, .85, 'CPE LiteBeam 5AC\n(39 casas, S2)', '#fce4d6'); box(ax, 7.8, 1.0, 2.0, .85, 'CPE LiteBeam 5AC\n(32 casas, S3)', '#fce4d6')
-arrow(ax, (1.7, 3.65), (2.2, 3.65), 'Ku/Ka'); arrow(ax, (3.15, 3.2), (3.15, 2.7), 'Ethernet'); arrow(ax, (4.1, 2.25), (5.0, 3.7)); arrow(ax, (4.1, 2.25), (5.0, 2.55)); arrow(ax, (4.1, 2.25), (5.0, 1.4)); arrow(ax, (3.15, 1.2), (3.15, 1.8), 'CC 48 V')
+arrow(ax, (1.7, 3.65), (2.2, 3.65), 'Ku/Ka'); arrow(ax, (3.15, 3.2), (3.15, 2.7), 'Ethernet'); arrow(ax, (4.1, 2.25), (5.0, 3.7)); arrow(ax, (4.1, 2.25), (5.0, 2.55)); arrow(ax, (4.1, 2.25), (5.0, 1.4))
 for i in range(3): arrow(ax, (7.0, 3.7 - i * 1.15), (7.8, 3.7 - i * 1.15 - (0 if i == 0 else 0.0) - (0 if i == 0 else -0.0)))
 ax.text(5, .25, 'Cada CPE: router Wi-Fi en la casa · 2 puntos de acceso comunitarios', fontsize=8, style='italic')
 plt.tight_layout(); plt.savefig(FIG + 'fig_diagrama_sistema.png', dpi=200); plt.close()
@@ -70,44 +70,37 @@ open('tablas/t_casos.tex', 'w').write('\n'.join(lines) + '\n\\bottomrule\\end{ta
 # 4) MCS usados
 vc = df.MCS_dl.value_counts(); order = ['256QAM 5/6', '256QAM 3/4', '64QAM 5/6', '64QAM 3/4', '64QAM 2/3', '16QAM 3/4', '16QAM 1/2']
 open('tablas/t_mcs.tex', 'w').write('\\begin{tabular}{lr}\\toprule MCS (bajada, DL) & Casas\\\\\\midrule\n' + '\\\\\n'.join(f'{tx(m)} & {int(vc.get(m, 0))}' for m in order if vc.get(m, 0)) + '\\\\\\bottomrule\\end{tabular}\n')
-# 5) BOM desde Excel
-wb = load_workbook('../12_excel_memoria/Memoria_Calculo_Babilonia.xlsx', data_only=True); w = wb['BOM_CAPEX']; L = ['\\begin{longtable}{p{5.2cm}rrrrr}\\toprule Ítem & Cant. & P.\\,unit. (Q) & Total (Q) & Estado\\\\\\midrule\\endhead']
+# 5) BOM compacto y costos desde el Excel recalculado
+wb = load_workbook('../12_excel_memoria/Memoria_Calculo_Babilonia.xlsx', data_only=True); w = wb['Costos']
+items = []; r = 5
+while w.cell(r, 1).value and w.cell(r, 3).value is not None and not str(w.cell(r, 1).value).startswith('Subtotal'):
+    items.append((w.cell(r, 1).value, w.cell(r, 2).value, w.cell(r, 3).value, w.cell(r, 6).value, w.cell(r, 7).value, w.cell(r, 8).value)); r += 1
 cats = {}
-for r in range(5, 27):
-    if w.cell(r, 1).value is None: continue
-    n, cat, q, pu, tot, st = w.cell(r, 1).value, w.cell(r, 2).value, w.cell(r, 3).value, w.cell(r, 7).value, w.cell(r, 8).value, w.cell(r, 10).value
-    cats[cat] = cats.get(cat, 0) + tot; est = 'Fuente' if str(st).startswith('Fuente') else 'Estim.'
-    L.append(f'{tx(n)} & {int(q)} & {pu:,.0f} & {tot:,.0f} & {est}\\\\'.replace(',', '\\,'))
-for r in range(27, 40):
-    if w.cell(r, 1).value and str(w.cell(r, 1).value).startswith(('Subtotal', 'Flete', 'Imprev', 'CAPEX TOTAL (Q)', 'CAPEX por hogar')) and w.cell(r, 8).value is not None:
-        L.append(f'\\midrule \\textbf{{{tx(w.cell(r, 1).value)}}} & & & \\textbf{{{w.cell(r, 8).value:,.0f}}} & \\\\'.replace(',', '\\,'))
-open('tablas/t_bom.tex', 'w').write('\n'.join(L) + '\n\\bottomrule\\end{longtable}\n')
-tot = sum(cats.values()); capx = wb['Resumen']['B19'].value
-fig, ax = plt.subplots(1, 2, figsize=(9, 3.4)); ks = sorted(cats, key=cats.get, reverse=True); ax[0].barh(ks, [cats[k] / 1000 for k in ks], color='#3182bd'); ax[0].invert_yaxis(); ax[0].set(xlabel='Miles de Q (antes de flete e imprevistos)', title='CAPEX por categoría')
-o = wb['OPEX_Tarifa']; lab = [o.cell(r, 1).value for r in range(11, 18)]; val = [o.cell(r, 3).value for r in range(11, 18)]
-ax[1].barh(range(7), val, color='#e6550d'); ax[1].set_yticks(range(7)); ax[1].set_yticklabels([l[:28] for l in lab], fontsize=7); ax[1].invert_yaxis(); ax[1].set(xlabel='Q por mes (año 3)', title='OPEX mensual'); plt.tight_layout(); plt.savefig(FIG + 'fig_costos.png', dpi=200); plt.close()
-# 6) OPEX tabla
-L = ['\\begin{tabular}{lrr}\\toprule Concepto (Q/mes) & Año 1 & Año 3\\\\\\midrule']
-for r in range(5, 27):
-    n = o.cell(r, 1).value
-    if r in (11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22): 
-        a, b = o.cell(r, 2).value, o.cell(r, 3).value; f = (lambda v: f'{v:,.1f}' if r in (20, 21, 22) else f'{v:,.0f}')
-        L.append(('\\midrule ' if r in (18, 22) else '') + f'{tx(n)} & {f(a)} & {f(b)}\\\\'.replace(',', '\\,'))
+for n_, fn, q, pu, tot, src in items: cats[fn] = cats.get(fn, 0) + tot
+L = ['\\begin{tabular}{p{6.2cm}rrrl}\\toprule Ítem & Cant. & P. unit. (Q) & Subtotal (Q) & Precio\\\\\\midrule']
+for n_, fn, q, pu, tot, src in items:
+    est = 'Estim.' if 'Estim' in str(src) else 'Ficha/tienda'
+    L.append(f'{tx(n_)} & {int(q)} & {pu:,.0f} & {tot:,.0f} & {est}\\\\'.replace(',', '\\,'))
+sub = w.cell(r + 1, 7).value; fl = w.cell(r + 2, 7).value; im = w.cell(r + 3, 7).value; capx = w.cell(r + 4, 7).value; caph = w.cell(r + 7, 7).value
+for lab, v in (('Subtotal', sub), ('Flete y aduana (10 \\%)', fl), ('Imprevistos (10 \\%)', im), ('CAPEX total', capx), ('CAPEX por hogar (98 hogares)', caph)):
+    L.append(f'\\midrule \\textbf{{{lab}}} & & & \\textbf{{{v:,.0f}}} & \\\\'.replace(',', '\\,'))
+open('tablas/t_bom.tex', 'w').write('\n'.join(L) + '\n\\bottomrule\\end{tabular}\n')
+fig, ax = plt.subplots(1, 2, figsize=(9, 3.2)); ks = sorted(cats, key=cats.get, reverse=True); ax[0].barh(ks, [cats[k] / 1000 for k in ks], color='#3182bd'); ax[0].invert_yaxis(); ax[0].set(xlabel='Miles de Q (antes de flete e imprevistos)', title='CAPEX por función')
+o0 = [i for i in range(1, 80) if str(w.cell(i, 1).value).startswith('OPEX mensual (año 3)')][0]
+op = {}
+for i in range(o0 + 2, o0 + 14):
+    n_ = w.cell(i, 1).value; v = w.cell(i, 7).value
+    if n_ in ('Suscripción Starlink', 'Mantenimiento (2 % anual del CAPEX)', 'Técnico local (medio tiempo)', 'Reposición de CPE (5 % anual de su costo)', 'Seguro (1 % anual del CAPEX)', 'Administración, cobranza y soporte'): op[n_] = v
+lab = ['Starlink', 'Mantenimiento', 'Técnico local', 'Reposición CPE', 'Seguro', 'Administración']; val = list(op.values())
+ax[1].barh(lab, val, color='#e6550d'); ax[1].invert_yaxis(); ax[1].set(xlabel='Q por mes', title='OPEX mensual (año 3)'); plt.tight_layout(); plt.savefig(FIG + 'fig_costos.png', dpi=200); plt.close()
+L = ['\\begin{tabular}{lr}\\toprule Concepto & Q por mes\\\\\\midrule']
+for n_, lb_ in zip(op, lab): L.append(f'{lb_} & {op[n_]:,.0f}\\\\'.replace(',', '\\,'))
+tot_op = w.cell(o0 + 15, 7).value; ph = w.cell(o0 + 16, 7).value; am = w.cell(o0 + 17, 7).value; eq = w.cell(o0 + 18, 7).value; pay = w.cell(o0 + 22, 7).value
+L.append(f'\\midrule \\textbf{{OPEX mensual}} & \\textbf{{{tot_op:,.0f}}}\\\\ OPEX por hogar y mes & {ph:,.1f}\\\\ Amortización del CAPEX (5 años) por hogar y mes & {am:,.1f}\\\\ \\textbf{{Tarifa de equilibrio por hogar y mes}} & \\textbf{{{eq:,.1f}}}\\\\'.replace(',', '\\,'))
 open('tablas/t_opex.tex', 'w').write('\n'.join(L) + '\n\\bottomrule\\end{tabular}\n')
-# 7) sensibilidad
-sv = pd.read_csv('../04_propagacion_linkbudget/sensibilidad_escenarios.csv'); L = ['\\begin{tabular}{p{6.4cm}rrrr}\\toprule Escenario & Casas útiles & Margen DL mín. & Margen UL mín. & Casas $>$30 dB\\\\\\midrule']
-for _, r in sv.iterrows(): L.append(f'{tx(r.iloc[0])} & {int(r.iloc[1])} & {r.iloc[2]:.1f} & {r.iloc[3]:.1f} & {int(r.iloc[6])}\\\\')
+json.dump(dict(capx=capx, caph=caph, opex=tot_op, opexh=ph, am=am, eq=eq, pay=pay, sub=sub), open('costos_resumen.json', 'w'))
+# 6) sensibilidad
+sv = pd.read_csv('../04_propagacion_linkbudget/sensibilidad_escenarios.csv'); L = ['\\begin{tabular}{p{6.6cm}rrrr}\\toprule Escenario & Casas útiles & Margen DL mín. (dB) & Margen UL mín. (dB) & Casas $>$30 dB\\\\\\midrule']
+for _, r_ in sv.iterrows(): L.append(f'{tx(r_.iloc[0])} & {int(r_.iloc[1])} & {r_.iloc[2]:.1f} & {r_.iloc[3]:.1f} & {int(r_.iloc[6])}\\\\')
 open('tablas/t_sens.tex', 'w').write('\n'.join(L) + '\n\\bottomrule\\end{tabular}\n')
-# 8) fuentes
-fu = [l.strip().strip('|').split('|') for l in open('../14_fuentes/FUENTES.md', encoding='utf-8') if l.startswith('| F')]
-L = ['\\begin{longtable}{p{.9cm}p{5.6cm}p{6.2cm}}\\toprule ID & Dato & Fuente\\\\\\midrule\\endhead']
-import re
-for r in fu:
-    src = r[2].strip(); m = re.search(r'https?://[^\s,;)]+', src); link = f'\\url{{{m.group(0).rstrip(".")}}}' if m else tx(src[:70])
-    L.append(f'{r[0].strip()} & {tx(r[1].strip()[:140])} & {link}\\\\')
-open('tablas/t_fuentes.tex', 'w').write('\n'.join(L) + '\n\\bottomrule\\end{longtable}\n')
-# anexo: tabla completa de casas
-L = ['\\begin{longtable}{rlrrrrrrl}\\toprule Casa & Sec. & Dist. (m) & Elev. rayo (°) & Follaje (m) & Follaje (dB) & Margen DL & Margen UL & MCS DL\\\\\\midrule\\endhead']
-for _, r in df.iterrows(): L.append(f'{int(r.casa)} & {r.sector} & {r.dist_m:.0f} & {r.el_deg:.1f} & {int(r.follaje_m)} & {r.L_follaje_dB:.1f} & {r.margen_dl_BPSK_dB:.1f} & {r.margen_ul_BPSK_dB:.1f} & {tx(r.MCS_dl)}\\\\')
-open('tablas/t_anexo_casas.tex', 'w').write('\n'.join(L) + '\n\\bottomrule\\end{longtable}\n')
-print('listo', capx, round(tot))
+print('listo', round(capx), round(eq, 1), round(pay, 1))

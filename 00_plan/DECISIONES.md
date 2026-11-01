@@ -24,3 +24,7 @@
 | D20 | 27-oct | Entregables simplificados (indicación de la clase): 1 Excel con hojas, 1 informe LaTeX/PDF, archivo de simulación, presentación + guion de 3 voces | Pedido de Kevin | — |
 | D21 | 27-oct | Energía solar breve: carga 158 W → 3.8 kWh/día; 3 paneles de 550 W + 2 baterías LiFePO4 de 5.12 kWh (2.4 días de autonomía); precios aproximados | No es el foco del proyecto | — |
 | D22 | 27-oct | CAPEX de diseño ≈ Q397 mil (US$51.9 mil), Q4,050 por hogar; OPEX año 3 ≈ Q8,530/mes (Q87/hogar); tarifa de equilibrio ≈ Q155; tarifa propuesta Q175/mes. Plan Starlink año 3 = Q4,370 (100 puntos × 25 GB = 2.5 TB → 10 bloques extra; corrige los Q4,510 anteriores) | Hoja BOM_CAPEX / OPEX_Tarifa | Cotización local |
+
+
+## D23 (1-nov-2026): versión corta y sin energía
+Por observación del catedrático/equipo: informe más corto (~16 págs), sin tablas por casa ni anexos extensos, sin energía solar ni sus costos (la alimentación del sitio se declara fuera de alcance), Excel de 8 hojas con casos representativos. Costos recalculados: CAPEX Q306,860 (Q3,131/hogar), OPEX Q7,862/mes (Q80/hogar), tarifa de equilibrio Q132, tarifa propuesta Q150, recuperación ≈ 45 meses. Se declara el uso de IA como apoyo en el informe.

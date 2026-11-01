@@ -1,24 +1,24 @@
 # Guion de la defensa — 3 voces
 
-Proyecto: sistema de antenas y red para la aldea Babilonia (Chisec, Alta Verapaz). Evaluación: 5 de noviembre de 2026. Duración total ≈ 18 min 05 s.
+Proyecto: sistema de antenas y red para la aldea Babilonia (Chisec, Alta Verapaz). Evaluación: 5 de noviembre de 2026. Duración total ≈ 17 min 05 s.
 
 | Persona | Diapositivas | Tiempo aprox. |
 |---|---|---|
 | Kevin Gabriel González Donis | 1, 2, 3, 4, 5, 6, 7 | 6 min 30 s |
 | Maximiliano González De León | 8, 9, 10, 11, 12, 13, 14 | 7 min 35 s |
-| Diego Andre Cuellar Butcher | 15, 16, 17, 18 | 4 min 00 s |
+| Diego Andre Cuellar Butcher | 15, 16, 17 | 3 min 00 s |
 
 Cada diapositiva trae el mismo texto en sus notas de orador. Las cifras salen del libro Memoria_Calculo_Babilonia.xlsx y del informe LaTeX.
 
 ## Diapositiva 1. Internet para Babilonia: una torre, tres sectores y Starlink
 **Habla: Kevin Gabriel González Donis** · ≈ 30 s
 
-Buenos días. Somos Kevin González, Maximiliano González y Diego Cuellar, y les presentamos el diseño de un sistema de antenas para llevar internet a la aldea Babilonia, en Chisec, Alta Verapaz. La idea en una frase: una sola torre de 30 metros con tres antenas sectoriales en 5 GHz, alimentada por energía solar y conectada a internet con Starlink, que da servicio a las 109 casas de la aldea. Yo explico el problema y la arquitectura; Maximiliano presenta el cálculo de propagación, el presupuesto de enlace y la capacidad; y Diego cierra con energía, costos y marco legal.
+Buenos días. Somos Kevin González, Maximiliano González y Diego Cuellar, y les presentamos el diseño de un sistema de antenas para llevar internet a la aldea Babilonia, en Chisec, Alta Verapaz. La idea en una frase: una sola torre de 30 metros con tres antenas sectoriales en 5 GHz, conectada a internet con Starlink, que da servicio a las 109 casas de la aldea. Yo explico el problema y la arquitectura; Maximiliano presenta el cálculo de propagación, el presupuesto de enlace y la capacidad; y Diego cierra con costos y marco legal.
 
 ## Diapositiva 2. Una aldea de unas 380 personas sin red fija
 **Habla: Kevin Gabriel González Donis** · ≈ 60 s
 
-El problema es de acceso. Según el Censo 2018 solo el 29 % de los guatemaltecos usa internet, y las brechas más grandes están en el área rural. Babilonia, en Chisec, Alta Verapaz, no tiene fibra ni red fija. Pero Starlink está disponible: en la página de cobertura de Starlink medimos 145 a 276 Mbps de bajada en las coordenadas de la aldea. Eso nos da una conexión a internet; lo que falta es llevarla desde un punto hasta cada casa. Ese es el problema de antenas que resolvemos. Nos pusimos tres metas medibles: que al menos el 95 % de las casas tenga un enlace útil con 10 dB de margen en bajada y subida, que cada casa pueda tener 25 Mbps en hora pico, y que el sistema tenga dos días de autonomía de energía, con costos calculados y cumpliendo la regulación de la SIT.
+El problema es de acceso. Según el Censo 2018 solo el 29 % de los guatemaltecos usa internet, y las brechas más grandes están en el área rural. Babilonia, en Chisec, Alta Verapaz, no tiene fibra ni red fija. Pero Starlink está disponible: en la página de cobertura de Starlink medimos 145 a 276 Mbps de bajada en las coordenadas de la aldea. Eso nos da una conexión a internet; lo que falta es llevarla desde un punto hasta cada casa. Ese es el problema de antenas que resolvemos. Nos pusimos metas medibles: que al menos el 95 % de las casas tenga un enlace útil con 10 dB de margen en bajada y subida, que cada casa tenga al menos 25 Mbps útiles de bajada y que el backhaul quede por debajo del 70 % de uso, con costos calculados y cumpliendo la regulación de la SIT.
 
 ## Diapositiva 3. 109 casas georreferenciadas en 800 m
 **Habla: Kevin Gabriel González Donis** · ≈ 60 s
@@ -28,12 +28,12 @@ Elegimos Babilonia, en Chisec. No hay censo a nivel de aldea, así que contamos 
 ## Diapositiva 4. Dos arquitecturas comparadas, una elegida
 **Habla: Kevin Gabriel González Donis** · ≈ 60 s
 
-Comparamos dos arquitecturas técnicamente distintas. La A es una torre central con acceso punto-multipunto en 5 GHz: una antena sectorial por zona y una antena direccional en cada casa. La B es una malla Wi-Fi exterior con ocho a diez nodos en postes por toda la aldea. La A necesita energía solar en un solo sitio, tiene capacidad predecible porque cada sector tiene su propio canal, un solo salto de latencia y un presupuesto de enlace que podemos verificar casa por casa. La B necesita energía en cada poste, su capacidad cae con cada salto y hay muchos puntos de falla. Elegimos la A. Su riesgo es que la torre es un punto único de falla, y lo cubrimos con dos días de autonomía de baterías y equipo de repuesto.
+Comparamos dos arquitecturas técnicamente distintas. La A es una torre central con acceso punto-multipunto en 5 GHz: una antena sectorial por zona y una antena direccional en cada casa. La B es una malla Wi-Fi exterior con ocho a diez nodos en postes por toda la aldea. La A equipa un solo sitio, tiene capacidad predecible porque cada sector tiene su propio canal, un solo salto de latencia y un presupuesto de enlace que podemos verificar casa por casa. La B equipa ocho a diez postes, su capacidad cae con cada salto y hay muchos puntos de falla. Elegimos la A. Su riesgo es que la torre es un punto único de falla, y lo cubrimos con equipo de repuesto.
 
 ## Diapositiva 5. Una torre de 30 m con tres sectores de 120°
 **Habla: Kevin Gabriel González Donis** · ≈ 60 s
 
-Así funciona el sistema. Arriba de la torre, a 30 metros, va el plato Starlink Performance de tercera generación, que trae el internet. Por Ethernet baja a un router en un gabinete al pie de la torre, que alimenta por PoE tres radios Rocket Prism, cada uno con una antena sectorial de 120 grados: los sectores S1, S2 y S3, con 38, 39 y 32 casas. Cada casa tiene una antena direccional LiteBeam de 23 dBi en un mástil de 6 metros sobre el techo, apuntando a la torre, y un router Wi-Fi adentro. Además dejamos dos puntos de acceso comunitarios. Todo el equipo de la torre, unos 158 watts, lo alimentan tres paneles solares y dos baterías que Diego explicará al final.
+Así funciona el sistema. Arriba de la torre, a 30 metros, va el plato Starlink Performance de tercera generación, que trae el internet. Por Ethernet baja a un router en un gabinete al pie de la torre, que alimenta por PoE tres radios Rocket Prism, cada uno con una antena sectorial de 120 grados: los sectores S1, S2 y S3, con 38, 39 y 32 casas. Cada casa tiene una antena direccional LiteBeam de 23 dBi en un mástil de 6 metros sobre el techo, apuntando a la torre, y un router Wi-Fi adentro. Además dejamos dos puntos de acceso comunitarios. La alimentación eléctrica del sitio queda fuera del alcance de este proyecto.
 
 ## Diapositiva 6. Inventario de equipos con datos de ficha
 **Habla: Kevin Gabriel González Donis** · ≈ 60 s
@@ -80,27 +80,22 @@ Para la capacidad, suponemos que en el año 3 el 90 % de las casas contrata el s
 
 Probamos qué pasa si nuestros supuestos fallan. Recalculamos todo el modelo para varios escenarios. Con torre de 36 metros el peor margen sube a 20 dB; con copas de 15 metros, a 25 dB. Con copas de 25 metros, en vez de 20, una sola casa, la 26, cae por debajo de 10 dB y se aplica la contingencia. Con un desvanecimiento adicional de 6 dB por lluvia fuerte o árboles mojados, una casa cae a 7.4 dB en subida. Con un error de montaje de 2 grados de inclinación, las 109 casas siguen conectadas; con 4 grados, 4 casas se pierden, por eso la inclinación se verifica en campo. Y una torre de 24 metros no es suficiente en el peor escenario, lo que confirma la altura de 30 metros.
 
-## Diapositiva 15. La torre se alimenta sola con sol y baterías
-**Habla: Diego Andre Cuellar Butcher** · ≈ 60 s
-
-Gracias, Maximiliano. Les cuento cómo se alimenta la torre. La energía no es el foco de este proyecto, así que la dimensionamos de forma sencilla. La carga continua es de unos 158 watts: el plato Starlink con 100 watts, tres radios de 9.5 watts, un router y 10 % de pérdidas de conversión. Son 3.8 kilovatios-hora al día. Con dos días de autonomía y 90 % de profundidad de descarga, necesitamos 8.4 kilovatios-hora, es decir dos baterías de litio-fosfato de hierro de 5.12 kWh, que dan 2.4 días. Para recargar en el mes menos soleado, con unas 3.5 horas solar pico, que es un supuesto típico de la zona, se necesitan 1.44 kilovatios pico: tres paneles de 550 watts. Con esto, la torre es autosustentable sin red eléctrica. El costo aproximado del sistema de energía completo, con paneles, baterías, controlador, inversor y estructura, es de unos 74 mil quetzales, antes de flete e imprevistos.
-
-## Diapositiva 16. Q4,050 por hogar de CAPEX y Q87 al mes de OPEX
+## Diapositiva 15. Q3,131 por hogar de CAPEX y Q80 al mes de OPEX
 **Habla: Diego Andre Cuellar Butcher** · ≈ 75 s
 
-Los costos están en el libro de Excel con cada precio, su estado y su fuente, al tipo de cambio de 7.6445 quetzales por dólar. Algunos precios son publicados, como el plato Starlink, los radios, las antenas y las baterías; otros son estimaciones que deben cotizarse en Guatemala, y así están marcados. El CAPEX de diseño, con 109 puntos equipados, es de unos 397 mil quetzales, unos 52 mil dólares, incluyendo 10 % de flete y aduana y 10 % de imprevistos. Dividido entre los 98 hogares del año 3 son 4,050 quetzales por hogar. La mayor parte son las antenas y la instalación en las casas, seguida por la energía y la torre. El OPEX mensual del año 3 es de 8,530 quetzales: la suscripción Starlink con su plan de 2 terabytes más bloques extra, mantenimiento, un técnico local de medio tiempo, reservas para reponer antenas y baterías, seguro y administración. Por hogar son 87 quetzales al mes. Agregando la amortización del CAPEX a cinco años, la tarifa de equilibrio es de 155 quetzales por hogar al mes. Proponemos 175 quetzales, con lo que el CAPEX se recupera en unos 46 meses.
+Los costos están en el libro de Excel con cada precio, su estado y su fuente, al tipo de cambio de 7.6445 quetzales por dólar. Algunos precios son publicados, como el plato Starlink, los radios y las antenas; otros son estimaciones que deben cotizarse en Guatemala, y así están marcados. El CAPEX de diseño, con 109 puntos equipados, es de unos 307 mil quetzales, unos 40 mil dólares, incluyendo 10 % de flete y aduana y 10 % de imprevistos. Dividido entre los 98 hogares del año 3 son 3,131 quetzales por hogar. La mayor parte son los equipos y la instalación en las casas, seguida por la torre. La alimentación eléctrica del sitio no se incluye. El OPEX mensual del año 3 es de 7,862 quetzales: la suscripción Starlink con su plan de 2 terabytes más bloques extra, mantenimiento, un técnico local de medio tiempo, reserva para reponer antenas, seguro y administración. Por hogar son 80 quetzales al mes. Agregando la amortización del CAPEX a cinco años, la tarifa de equilibrio es de 132 quetzales por hogar al mes. Proponemos 150 quetzales, con lo que el CAPEX se recupera en unos 45 meses.
 
-## Diapositiva 17. Operación como empresa registrada ante la SIT
+## Diapositiva 16. Operación como empresa registrada ante la SIT
 **Habla: Diego Andre Cuellar Butcher** · ≈ 60 s
 
 Para el marco legal, asumimos que el proyecto lo ejecuta una empresa operadora ya legalizada. La Ley General de Telecomunicaciones, el Decreto 94-96, establece que la Superintendencia de Telecomunicaciones administra el espectro y la Tabla Nacional de Atribución de Frecuencias. Nuestros tres canales, 5745, 5785 y 5825 MHz, están dentro de la banda de 5725 a 5850 MHz, que figura entre las bandas de 5 GHz de Guatemala según una referencia regional; la potencia máxima y las condiciones exactas hay que confirmarlas en la tabla vigente, y lo declaramos así, porque no pudimos acceder al texto oficial. La empresa inscribe el servicio en el registro de telecomunicaciones. Starlink fue autorizado por la SIT en mayo de 2023 y el backhaul se contrata como servicio comercial Business. Además se requiere el acuerdo con la comunidad, a través del COCODE, para el terreno de la torre y el permiso municipal de Chisec para la obra civil. Para el análisis académico, asumimos que los derechos de uso del espectro están disponibles.
 
-## Diapositiva 18. Una torre, tres sectores y todas las casas conectadas
+## Diapositiva 17. Una torre, tres sectores y todas las casas conectadas
 **Habla: Diego Andre Cuellar Butcher** · ≈ 45 s
 
-Para concluir: una sola torre de 30 metros, con tres sectores de 5 GHz y backhaul Starlink, conecta las 109 casas de Babilonia con un margen de al menos 13.4 dB en el peor enlace de subida. El relieve de la hondonada es favorable; la vegetación es lo que determina la altura de la torre y el presupuesto de enlace. Los tres canales con sincronía GPS son necesarios para evitar interferencia entre sectores. El sistema es robusto frente a variaciones razonables y tiene margen para crecer. Cuesta unos 4,050 quetzales por hogar y se sostiene con una tarifa de alrededor de 155 quetzales al mes. Sus limitaciones: los patrones de antena son modelos calibrados con las fichas, la altura de copas es un supuesto y varios precios deben cotizarse localmente. Con esto terminamos; Kevin, Maximiliano y yo estamos listos para sus preguntas. KEVIN responde sobre arquitectura y equipos; MAXIMILIANO sobre propagación, enlace y capacidad; DIEGO sobre energía, costos y marco legal.
+Para concluir: una sola torre de 30 metros, con tres sectores de 5 GHz y backhaul Starlink, conecta las 109 casas de Babilonia con un margen de al menos 13.4 dB en el peor enlace de subida. El relieve de la hondonada es favorable; la vegetación es lo que determina la altura de la torre y el presupuesto de enlace. Los tres canales con sincronía GPS son necesarios para evitar interferencia entre sectores. El sistema es robusto frente a variaciones razonables y tiene margen para crecer. Cuesta unos 3,130 quetzales por hogar y se sostiene con una tarifa de alrededor de 132 quetzales al mes. Sus limitaciones: los patrones de antena son modelos calibrados con las fichas, la altura de copas es un supuesto y varios precios deben cotizarse localmente. Con esto terminamos; Kevin, Maximiliano y yo estamos listos para sus preguntas. KEVIN responde sobre arquitectura y equipos; MAXIMILIANO sobre propagación, enlace y capacidad; DIEGO sobre costos y marco legal.
 
 ## Preguntas frecuentes (reparto)
 - **Kevin:** ¿por qué una torre y no una malla? ¿por qué esa antena sectorial? ¿cómo se eligió la aldea?
-- **Maximiliano:** ¿cómo se calculó el follaje? ¿qué pasa con las casas cercanas? ¿cómo se validó el modelo? ¿qué supuestos son más sensibles?
-- **Diego:** ¿cuánto cuesta por hogar? ¿qué precios son estimados? ¿qué dice la SIT sobre la banda de 5 GHz? ¿cómo se alimenta la torre?
+- **Maximiliano:** ¿cómo se calculó el follaje? ¿qué pasa con las casas cercanas? ¿cómo se validó el modelo con CloudRF? ¿qué supuestos son más sensibles?
+- **Diego:** ¿cuánto cuesta por hogar? ¿qué precios son estimados? ¿qué dice la SIT sobre la banda de 5 GHz? ¿por qué no se incluyó la energía?
