@@ -109,7 +109,7 @@ for i, row in enumerate(legal):
     for j, v in enumerate(row): put(wl, 5 + i, 1 + j, v, BOLD if j == 0 else BLK, wrap=True)
     wl.row_dimensions[5 + i].height = 62
 # ===================== FUENTES =====================
-wf = sheet('Fuentes', [7, 60, 60, 14, 28]); title(wf, 'Fuentes y trazabilidad', 'Copia de 14_fuentes/FUENTES.md (se actualizó con F28–F30).')
+wf = sheet('Fuentes', [7, 60, 60, 14, 28]); title(wf, 'Fuentes y trazabilidad', 'Copia de 14_fuentes/FUENTES.md (se actualizó con F28–F31).')
 hdr(wf, 4, ['ID', 'Dato usado', 'Fuente', 'Consulta', 'Estado'])
 fu = [l.strip().strip('|').split('|') for l in open('../14_fuentes/FUENTES.md', encoding='utf-8') if l.startswith('| F')]
 for i, row in enumerate(fu):
@@ -141,8 +141,29 @@ for i, (a, b, c, f) in enumerate(res):
     put(wr, 5 + i, 1, a, BOLD); put(wr, 5 + i, 2, b, BLK, f); put(wr, 5 + i, 3, c)
 r = 5 + len(res) + 1; wr.cell(r, 1, 'Contenido del libro').font = BOLD
 idx = [('Supuestos', 'Todos los parámetros de entrada (azules) con su fuente'), ('MCS', 'Tabla de modulaciones del radio y tasas PHY'), ('Enlace_por_casa', 'Presupuesto de enlace de las 109 casas, con fórmulas'), ('Capacidad', 'Utilización por sector, crecimiento y backhaul'),
-       ('Interferencia', 'Plan de frecuencias y C/I entre sectores'), ('Sensibilidad', 'Escenarios de torre, copa, desvanecimiento y montaje'), ('Energia', 'Dimensionamiento solar y baterías'), ('BOM_CAPEX', 'Lista de materiales y CAPEX en Q'), ('OPEX_Tarifa', 'OPEX, costo por hogar y tarifa'), ('Legal', 'Marco regulatorio (SIT)'), ('Fuentes', 'Trazabilidad de datos')]
+       ('Interferencia', 'Plan de frecuencias y C/I entre sectores'), ('Sensibilidad', 'Escenarios de torre, copa, desvanecimiento y montaje'), ('Contraste_CloudRF', 'Validación del enlace con CloudRF (4 casas)'), ('Energia', 'Dimensionamiento solar y baterías'), ('BOM_CAPEX', 'Lista de materiales y CAPEX en Q'), ('OPEX_Tarifa', 'OPEX, costo por hogar y tarifa'), ('Legal', 'Marco regulatorio (SIT)'), ('Fuentes', 'Trazabilidad de datos')]
 for i, (a, b) in enumerate(idx): put(wr, r + 1 + i, 1, a, BOLD); put(wr, r + 1 + i, 2, b); wr.merge_cells(start_row=r + 1 + i, start_column=2, end_row=r + 1 + i, end_column=3)
-order = ['Resumen', 'Supuestos', 'MCS', 'Enlace_por_casa', 'Capacidad', 'Interferencia', 'Sensibilidad', 'Energia', 'BOM_CAPEX', 'OPEX_Tarifa', 'Legal', 'Fuentes']
+
+# ---- Contraste CloudRF
+wcr = sheet('Contraste_CloudRF', [8, 11, 11, 12, 12, 14, 14, 11, 14, 14, 14, 14, 14]); title(wcr, 'Contraste con CloudRF (perfil de trayecto, 4 enlaces)', 'Azul = dato leído de la captura de CloudRF o del modelo propio; negro = fórmula. Pr sin ganancia del CPE ni pérdidas propias extra (0.5 + 1.0 + 0.3 dB), igual que CloudRF.')
+put(wcr, 3, 1, 'Ptx (dBm)', BOLD); put(wcr, 3, 2, 28, BLUE); put(wcr, 3, 3, 'Frecuencia (MHz)', BOLD); put(wcr, 3, 4, 5800, BLUE)
+hdr(wcr, 5, ['Casa', 'Dist. 2D (m)', 'Dist. 3D (m)', 'G efectiva (dBi)', 'FSPL propia (dB)', 'Pr propia sin veg. (dBm)', 'Pr CloudRF sin veg. (dBm)', 'Dif. (dB)', 'Pr CloudRF con veg. (dBm)', 'Pérdida veg. CloudRF (dB)', 'Pérdida follaje propia, copa 20 m (dB)', 'Pérdida follaje propia, copa 10 m (dB)', 'Pr propia con veg., copa 20 m (dBm)'])
+wcr.row_dimensions[5].height = 58
+import csv as _csv
+_lb = {int(r['casa']): r for r in _csv.DictReader(open('../04_propagacion_linkbudget/linkbudget_por_casa.csv'))}
+_cr = {int(r['casa']): r for r in _csv.DictReader(open('../04_propagacion_linkbudget/contraste_cloudrf.csv'))}
+_con = {26: -56.7, 43: -64.3, 55: -56.1, 93: -66.8}
+for i, c in enumerate([26, 43, 55, 93]):
+    r = 6 + i; x = _lb[c]; y = _cr[str(c)] if str(c) in _cr else _cr[c]
+    put(wcr, r, 1, c, BOLD); put(wcr, r, 2, float(x['dist_m']), BLUE, '0.0'); put(wcr, r, 3, float(x['dist3d_m']), BLUE, '0.0'); put(wcr, r, 4, float(x['G_ap_ef_dBi']), BLUE, '0.0')
+    put(wcr, r, 5, f'=32.44+20*LOG10(C{r}/1000)+20*LOG10($D$3)', fmt='0.0'); put(wcr, r, 6, f'=$B$3+D{r}-E{r}', fmt='0.0')
+    put(wcr, r, 7, float(y['pr_cr_sinveg']), BLUE, '0.0'); put(wcr, r, 8, f'=G{r}-F{r}', fmt='0.0'); put(wcr, r, 9, _con[c], BLUE, '0.0'); put(wcr, r, 10, f'=G{r}-I{r}', fmt='0.0')
+    put(wcr, r, 11, float(y['L_foll_hc20']), BLUE, '0.0'); put(wcr, r, 12, float(y['L_foll_hc10']), BLUE, '0.0'); put(wcr, r, 13, f'=F{r}-K{r}', fmt='0.0')
+put(wcr, 11, 1, 'Resumen', BOLD); put(wcr, 12, 1, 'Dif. máx. sin vegetación (dB)'); wcr.merge_cells('A12:D12'); put(wcr, 12, 5, '=MAX(ABS(MIN(H6:H9)),ABS(MAX(H6:H9)))', fmt='0.0')
+wcr['A14'] = 'Condiciones: modelo General purpose deterministic, 5800 MHz, 0.63 W, canal 20 MHz, torre 30 m AGL en 15.889081, -90.531767; Rx 6 m AGL; la ganancia del Tx se fijó a la efectiva de cada casa (el simulador no usa nuestro patrón).'
+wcr['A15'] = 'Lectura: sin vegetación coinciden dentro de 1.3 dB (FSPL, geometría y presupuesto validados). CloudRF solo penaliza árboles que cortan la línea de vista/Fresnel y usa copas de ~8-10 m; el modelo propio supone copas de 20 m y es más conservador (casas 26 y 93).'
+wcr['A16'] = 'Fuente: capturas en 14_fuentes/evidencias/cloudrf_sim*.png (CloudRF, cuenta gratuita, 1-nov-2026). https://cloudrf.com'
+for a in ('A14', 'A15', 'A16'): wcr[a].font = Font(name=F, italic=True, size=9)
+order = ['Resumen', 'Supuestos', 'MCS', 'Enlace_por_casa', 'Capacidad', 'Interferencia', 'Sensibilidad', 'Contraste_CloudRF', 'Energia', 'BOM_CAPEX', 'OPEX_Tarifa', 'Legal', 'Fuentes']
 wb._sheets = [wb[n] for n in order]
 wb.save('Memoria_Calculo_Babilonia.xlsx'); print('ok')

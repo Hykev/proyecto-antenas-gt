@@ -32,6 +32,7 @@
 | F28 | Bandas 5 GHz de Guatemala según referencia regional: 5150–5250, 5250–5350, 5725–5850 MHz (potencia, EIRP y DFS por verificar en TNAF vigente) | https://flyteccomputers.com/blog/5-ghz-frequency-reference-for-latin-america-and-the-caribbean/ | 27-oct-2026 | Secundaria; TNAF oficial no accesible |
 | F29 | Batería LiFePO4 Relion RB48V100: 51.2 V, 100 Ah, 5.12 kWh, US$3,495.95 | https://www.solar-electric.com/relion-rb48v100-lithium-ion-battery-48v.html | 27-oct-2026 | Distribuidor |
 | F30 | Panel solar 550 W, 144 celdas monocristalino (formato estándar); precio US$165 es estimación | https://a1solarstore.com/solar-panels/550-watt-solar-panels.html?page_id=93 | 27-oct-2026 | Solo formato; precio estimado |
+| F31 | CloudRF: simulador RF en línea (modelo General purpose deterministic, perfil de trayecto) usado para contrastar 4 enlaces | https://cloudrf.com ; capturas propias `evidencias/cloudrf_sim*_casa*_*.png` | 1-nov-2026 | Herramienta independiente; cobertura del suelo de CloudRF |
 
 ## Por verificar
 - Texto oficial de la TNAF (potencia máxima y condiciones en 5725–5850 MHz): no accesible desde el entorno; F28 es secundaria.

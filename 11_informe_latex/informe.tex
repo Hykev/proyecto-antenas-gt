@@ -147,8 +147,14 @@ La utilizaci\'on de aire de un sector es $U=\frac{1}{\text{fracci\'on DL}}\sum_i
 
 \section{Simulaci\'on, sensibilidad y validaci\'on}\label{sec:sens}
 \subsection{Herramientas y verificaci\'on cruzada}
-El modelo se implement\'o dos veces: en Python (\texttt{linkbudget.py}) y en Excel con f\'ormulas visibles (hoja \texttt{Enlace\_por\_casa}); ambos coinciden en las 109 casas (diferencia m\'axima de margen 0.14\,dB, debida al redondeo de entradas). Para contrastar un c\'alculo con una herramienta de RF independiente se simulan en CloudRF cuatro enlaces (casas 26, 43, 55 y 93) con los par\'ametros de la Tabla~\ref{tab:cloudrf}.
-\begin{table}[H]\centering\caption{Contraste con simulador RF (CloudRF). Columnas del simulador a completar con la captura.}\label{tab:cloudrf}\small\begin{tabular}{rrrrrr}\toprule Casa & Dist. (m) & FSPL propio (dB) & Pr propia (dBm) & Pr CloudRF (dBm) & Diferencia\\\midrule 26 & 398 & 99.7 & $-76.6$ & por simular & ---\\ 43 & 50 & 82.4 & $-36.0$ & por simular & ---\\ 55 & 165 & 92.1 & $-36.3$ & por simular & ---\\ 93 & 402 & 99.8 & $-55.2$ & por simular & ---\\\bottomrule\end{tabular}\end{table}
+El modelo se implement\'o dos veces: en Python (\texttt{linkbudget.py}) y en Excel con f\'ormulas visibles (hoja \texttt{Enlace\_por\_casa}); ambos coinciden en las 109 casas (diferencia m\'axima de margen 0.14\,dB, debida al redondeo de entradas). Para contrastar un c\'alculo con una herramienta de RF independiente se simulan en CloudRF cuatro enlaces (casas 26, 43, 55 y 93) (Tabla~\ref{tab:cloudrf}) \cite{F31}.
+\begin{table}[H]\centering\caption{Contraste con CloudRF. Pr = potencia recibida sin la ganancia del CPE ni las p\'erdidas propias adicionales (alimentador 0.5, desalineaci\'on 1.0 y lluvia 0.3\,dB), para igualar la definici\'on del simulador. Fuente: capturas en el Anexo~\ref{app:cloudrf}.}\label{tab:cloudrf}\small\setlength{\tabcolsep}{4pt}\begin{tabular}{rrrrrrrrr}\toprule & & \multicolumn{3}{c}{Sin vegetaci\'on (dBm)} & \multicolumn{4}{c}{Con vegetaci\'on: p\'erdida adicional (dB)}\\\cmidrule(lr){3-5}\cmidrule(lr){6-9} Casa & Dist. (m) & Propia & CloudRF & Dif. & CloudRF & Propia 20\,m & Propia 10\,m & Pr CloudRF (dBm)\\\midrule 26 & 398 & $-56.6$ & $-56.7$ & $-0.1$ & 0.0 & 41.2 & 20.8 & $-56.7$\\ 43 & 50 & $-57.2$ & $-58.5$ & $-1.3$ & 5.8 & 0.0 & 0.0 & $-64.3$\\ 55 & 165 & $-50.0$ & $-50.2$ & $-0.2$ & 5.9 & 7.4 & 4.4 & $-56.1$\\ 93 & 402 & $-66.8$ & $-66.8$ & 0.0 & 0.0 & 9.6 & 0.0 & $-66.8$\\\bottomrule\end{tabular}\end{table}
+\textbf{Metodolog\'ia.} En CloudRF (modelo \emph{General purpose deterministic}, 5800\,MHz, torre de 30\,m AGL en 15.889081, $-$90.531767, 0.63\,W, canal de 20\,MHz, receptor a 6\,m AGL) se us\'o la herramienta de perfil de trayecto. Como el simulador no incluye los patrones de nuestra sectorial, la ganancia del transmisor se fij\'o en la ganancia efectiva calculada para cada casa (15.1, $-$2.8, 14.1 y 5.0\,dBi), de modo que se contrasta la propagaci\'on y no el patr\'on de antena. Cada enlace se corri\'o sin y con la capa de cobertura del suelo (\'arboles y construcciones).
+
+\textbf{Resultados.} (i)~Sin vegetaci\'on, la potencia recibida coincide con el c\'alculo propio dentro de 1.3\,dB (diferencias $-0.1$, $-1.3$, $-0.2$ y 0.0\,dB); la mayor diferencia es la casa 43, a 50\,m y con 23.7\textdegree{} de inclinaci\'on, donde el simulador usa la distancia horizontal y su zona de Fresnel roza el terreno. Esto valida la p\'erdida en espacio libre, la geometr\'ia y el presupuesto de enlace. (ii)~Con vegetaci\'on, CloudRF solo penaliza los \'arboles que cortan la l\'inea de vista o la zona de Fresnel: en las casas 26 y 93 el rayo pasa por encima de los \'arboles (altura aprox.\ 8--10\,m en el perfil) y no hay p\'erdida; en las casas 43 y 55 hay 5.8 y 5.9\,dB. (iii)~El modelo propio, que supone copas de 20\,m, es m\'as conservador: da 41.2\,dB en la casa 26 frente a 0 de CloudRF. Si en el modelo propio se usa una copa de 10\,m, similar a la del simulador, la p\'erdida baja a 20.8, 0.0, 4.4 y 0.0\,dB y se acerca a la de CloudRF en las casas 55 y 93. En la casa 43 CloudRF detecta 5.8\,dB por \'arboles junto al receptor que la m\'ascara propia no capta (se ignoran los \'ultimos 10\,m); con 54\,dB de margen es irrelevante.
+
+\textbf{Conclusi\'on.} La parte determinista del c\'alculo queda validada por una herramienta independiente; la vegetaci\'on es la mayor fuente de incertidumbre, y los dos modelos la acotan: CloudRF por abajo (copas bajas) y el dise\~no por arriba (copas de 20\,m). Se mantiene el supuesto conservador de 20\,m para dimensionar, y se recomienda medir la altura real de copas en campo antes de construir. La diferencia en la casa 26 se discute en la Secci\'on~\ref{sec:sens} (escenario de copas de 15\,m: margen m\'inimo de 25.5\,dB).
+
 \subsection{Sensibilidad}
 Se recalcul\'o todo el modelo para escenarios de altura de torre, altura de copa, desvanecimiento adicional y error de montaje (Tabla~\ref{tab:sens}, Fig.~\ref{fig:sens}).
 \begin{table}[H]\centering\caption{Escenarios de sensibilidad.}\label{tab:sens}\small\input{tablas/t_sens.tex}\end{table}
@@ -172,7 +178,7 @@ Se asume que el proyecto lo ejecuta una empresa operadora ya legalizada. La Ley 
 \section{Riesgos y limitaciones}
 \begin{itemize}[nosep]
 \item \textbf{Georreferenciaci\'on:} $\pm10$\,m en las casas; la imagen puede estar desactualizada o haber casas ocultas.
-\item \textbf{Vegetaci\'on:} la altura de copa (20\,m) y la m\'ascara por color son supuestos; el follaje mojado puede aumentar la p\'erdida (escenario +6\,dB).
+\item \textbf{Vegetaci\'on:} la altura de copa (20\,m) y la m\'ascara por color son supuestos; CloudRF, con copas m\'as bajas, da menos p\'erdida (Tabla~\ref{tab:cloudrf}), as\'i que el valor real est\'a probablemente entre ambos; el follaje mojado puede aumentar la p\'erdida (escenario +6\,dB).
 \item \textbf{Patrones:} F/B y l\'obulos laterales no figuran en las fichas; se usan modelos calibrados y un tope de 25\,dB. Las sensibilidades de ficha son $\pm2$\,dB.
 \item \textbf{Starlink:} el precio del plato es de planificaci\'on (US\$1{,}499) y puede variar; la disponibilidad se verific\'o el 23-oct-2026.
 \item \textbf{Precios locales:} los \'items marcados ``Estim.'' deben cotizarse en Guatemala.
@@ -188,6 +194,12 @@ Una sola torre de 30\,m con tres sectores de 5\,GHz y backhaul Starlink conecta 
 \appendix
 \section{Resultados completos por casa}
 \small\input{tablas/t_anexo_casas.tex}\normalsize
+\section{Capturas de CloudRF}\label{app:cloudrf}
+Perfiles de trayecto de las cuatro simulaciones (Tabla~\ref{tab:cloudrf}). En cada figura, arriba sin cobertura del suelo y abajo con \'arboles y construcciones. Datos visibles en cada captura: distancia, inclinaci\'on hacia el receptor, p\'erdida de trayecto, potencia recibida y EIRP.
+\begin{figure}[H]\centering\includegraphics[width=\textwidth]{fig_cloudrf_casa26.png}\caption{Casa 26 (398\,m, azimut 276\textdegree{}). Sin vegetaci\'on y con vegetaci\'on: $-56.7$\,dBm en ambas; el rayo pasa sobre los \'arboles.}\end{figure}
+\begin{figure}[H]\centering\includegraphics[width=\textwidth]{fig_cloudrf_casa43.png}\caption{Casa 43 (50\,m, azimut 11\textdegree{}). $-58.5$\,dBm sin vegetaci\'on y $-64.3$\,dBm con vegetaci\'on.}\end{figure}
+\begin{figure}[H]\centering\includegraphics[width=\textwidth]{fig_cloudrf_casa55.png}\caption{Casa 55 (165\,m, azimut 45\textdegree{}). $-50.2$\,dBm sin vegetaci\'on y $-56.1$\,dBm con vegetaci\'on.}\end{figure}
+\begin{figure}[H]\centering\includegraphics[width=\textwidth]{fig_cloudrf_casa93.png}\caption{Casa 93 (402\,m, azimut 87\textdegree{}). $-66.8$\,dBm en ambas.}\end{figure}
 \section{Fuentes}
 \small\input{tablas/t_fuentes.tex}\normalsize
 \begin{thebibliography}{99}\footnotesize

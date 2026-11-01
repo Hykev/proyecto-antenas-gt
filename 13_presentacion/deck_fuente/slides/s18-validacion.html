@@ -1,0 +1,23 @@
+<section id="s18-validacion" data-transition="fade" style="background:#F5F3EC;color:#1B2A35;font-family:'DM Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:28px">
+<div style="display:flex;flex-direction:column;gap:12px">
+<p style="font-size:28px;letter-spacing:2px;text-transform:uppercase;color:#146B6B;font-weight:500">Validación con CloudRF</p>
+<h2 style="font-size:64px;font-weight:700;line-height:1.1;color:#0E2433">El simulador coincide con el cálculo: 1.3 dB como máximo</h2>
+</div>
+<table style="font-size:26px;color:#1B2A35">
+<tr><th style="text-align:left;background:#0E2433;color:#F5F3EC">Casa</th><th style="text-align:right;background:#0E2433;color:#F5F3EC">Distancia</th><th style="text-align:right;background:#0E2433;color:#F5F3EC">Pr propia</th><th style="text-align:right;background:#0E2433;color:#F5F3EC">Pr CloudRF</th><th style="text-align:right;background:#0E2433;color:#F5F3EC">Diferencia</th><th style="text-align:right;background:#0E2433;color:#F5F3EC">Vegetación CloudRF</th><th style="text-align:right;background:#0E2433;color:#F5F3EC">Follaje propio (copas 20 m)</th></tr>
+<tr style="background:#FBFAF6"><td><b>26</b></td><td style="text-align:right">398 m</td><td style="text-align:right">−56.6 dBm</td><td style="text-align:right">−56.7 dBm</td><td style="text-align:right">−0.1 dB</td><td style="text-align:right">0.0 dB</td><td style="text-align:right">41.2 dB</td></tr>
+<tr><td><b>43</b></td><td style="text-align:right">50 m</td><td style="text-align:right">−57.2 dBm</td><td style="text-align:right">−58.5 dBm</td><td style="text-align:right">−1.3 dB</td><td style="text-align:right">5.8 dB</td><td style="text-align:right">0.0 dB</td></tr>
+<tr style="background:#FBFAF6"><td><b>55</b></td><td style="text-align:right">165 m</td><td style="text-align:right">−50.0 dBm</td><td style="text-align:right">−50.2 dBm</td><td style="text-align:right">−0.2 dB</td><td style="text-align:right">5.9 dB</td><td style="text-align:right">7.4 dB</td></tr>
+<tr><td><b>93</b></td><td style="text-align:right">402 m</td><td style="text-align:right">−66.8 dBm</td><td style="text-align:right">−66.8 dBm</td><td style="text-align:right">0.0 dB</td><td style="text-align:right">0.0 dB</td><td style="text-align:right">9.6 dB</td></tr>
+</table>
+<div style="display:flex;gap:40px;align-items:center">
+<img src="/_blob/af4ab83204a46b530cfe2df082369aef" alt="Perfil de trayecto de CloudRF de la casa 55, sin vegetación arriba y con vegetación abajo" style="width:640px;height:294px;object-fit:contain;background:#FBFAF6;border:1px solid #DAD6C9;border-radius:12px">
+<div style="flex:1;display:flex;flex-direction:column;gap:14px">
+<p style="font-size:28px;line-height:1.3;color:#3D4852"><b style="color:#146B6B">Sin vegetación:</b> la pérdida en espacio libre y la geometría quedan validadas.</p>
+<p style="font-size:28px;line-height:1.3;color:#3D4852"><b style="color:#146B6B">Con vegetación:</b> CloudRF usa copas de ~10 m y da 0 a 5.9 dB; nuestro modelo, con copas de 20 m, es más conservador.</p>
+<p style="font-size:28px;line-height:1.3;color:#3D4852"><b style="color:#146B6B">Acción:</b> medir la altura real de copas antes de construir.</p>
+</div></div>
+<p style="position:absolute;left:128px;bottom:64px;width:1200px;font-size:24px;color:#6B7782">Babilonia · Antenas y Propagación 2026 · Presenta: Maximiliano · Perfil de la casa 55</p>
+<p style="position:absolute;right:128px;bottom:64px;width:200px;font-size:24px;text-align:right;color:#6B7782">12</p>
+<aside>MAXIMILIANO (50 s). Para validar el cálculo con una herramienta independiente, simulamos cuatro enlaces en CloudRF: las casas 26, 43, 55 y 93, sin y con vegetación, usando la ganancia efectiva de cada casa para comparar la propagación y no el patrón de antena. Sin vegetación, la potencia recibida coincide con la nuestra dentro de 1.3 decibelios, con diferencias de menos 0.1, menos 1.3, menos 0.2 y cero. Eso valida la pérdida en espacio libre y la geometría. Con vegetación, CloudRF solo penaliza los árboles que cortan la línea de vista o la zona de Fresnel, y usa copas de unos 10 metros; por eso en las casas 26 y 93 no hay pérdida, y en las casas 43 y 55 hay unos 6 decibelios. Nuestro modelo supone copas de 20 metros y es más conservador: en la casa 26 estima 41 decibelios. El valor real estará entre ambos, así que mantenemos el supuesto conservador y recomendamos medir las copas en campo antes de construir.</aside>
+</section>

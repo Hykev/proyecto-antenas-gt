@@ -1,12 +1,12 @@
 # Guion de la defensa — 3 voces
 
-Proyecto: sistema de antenas y red para la aldea Babilonia (Chisec, Alta Verapaz). Evaluación: 5 de noviembre de 2026. Duración total ≈ 17 min 15 s.
+Proyecto: sistema de antenas y red para la aldea Babilonia (Chisec, Alta Verapaz). Evaluación: 5 de noviembre de 2026. Duración total ≈ 18 min 05 s.
 
 | Persona | Diapositivas | Tiempo aprox. |
 |---|---|---|
 | Kevin Gabriel González Donis | 1, 2, 3, 4, 5, 6, 7 | 6 min 30 s |
-| Maximiliano González De León | 8, 9, 10, 11, 12, 13 | 6 min 45 s |
-| Diego Andre Cuellar Butcher | 14, 15, 16, 17 | 4 min 00 s |
+| Maximiliano González De León | 8, 9, 10, 11, 12, 13, 14 | 7 min 35 s |
+| Diego Andre Cuellar Butcher | 15, 16, 17, 18 | 4 min 00 s |
 
 Cada diapositiva trae el mismo texto en sus notas de orador. Las cifras salen del libro Memoria_Calculo_Babilonia.xlsx y del informe LaTeX.
 
@@ -65,32 +65,37 @@ Calculamos el presupuesto de enlace para cada una de las 109 casas, en bajada y 
 
 Este es el resultado para toda la aldea. Cada punto es una casa y su color indica la modulación máxima que alcanza en bajada con 10 dB de margen. Las 109 casas, el 100 %, tienen enlace útil tanto en bajada como en subida, así que superamos nuestra meta del 95 %. El margen mínimo es 16.4 dB en bajada y 13.4 dB en subida, y la mediana pasa de 45 dB. Sesenta y siete casas alcanzan 256QAM y las casas más lejanas del oeste, con más follaje, usan 64QAM o 16QAM. Las 14 casas a menos de 100 metros quedan en los lóbulos de elevación de la sectorial, pero su corta distancia mantiene márgenes de más de 39 dB. Como el diseño cumple, no se activa la regla de contingencia que fijamos: mástil de 10 metros o antena mayor si más de seis casas bajaban de 10 dB.
 
-## Diapositiva 12. Cada sector usa menos de la mitad de su aire
+## Diapositiva 12. El simulador coincide con el cálculo: 1.3 dB como máximo
+**Habla: Maximiliano González De León** · ≈ 50 s
+
+Para validar el cálculo con una herramienta independiente, simulamos cuatro enlaces en CloudRF: las casas 26, 43, 55 y 93, sin y con vegetación, usando la ganancia efectiva de cada casa para comparar la propagación y no el patrón de antena. Sin vegetación, la potencia recibida coincide con la nuestra dentro de 1.3 decibelios, con diferencias de menos 0.1, menos 1.3, menos 0.2 y cero. Eso valida la pérdida en espacio libre y la geometría. Con vegetación, CloudRF solo penaliza los árboles que cortan la línea de vista o la zona de Fresnel, y usa copas de unos 10 metros; por eso en las casas 26 y 93 no hay pérdida, y en las casas 43 y 55 hay unos 6 decibelios. Nuestro modelo supone copas de 20 metros y es más conservador: en la casa 26 estima 41 decibelios. El valor real estará entre ambos, así que mantenemos el supuesto conservador y recomendamos medir las copas en campo antes de construir.
+
+## Diapositiva 13. Cada sector usa menos de la mitad de su aire
 **Habla: Maximiliano González De León** · ≈ 60 s
 
 Para la capacidad, suponemos que en el año 3 el 90 % de las casas contrata el servicio, que en hora pico el 25 % está activo a la vez y que cada usuario activo demanda 4 Mbps de bajada y 0.5 de subida. Con la tasa de cada casa según su modulación y una eficiencia del 65 %, el sector S1 usa el 44 % de su aire en bajada, S2 el 48 % y S3 el 34 %. Es decir, hay holgura. El backhaul Starlink, con un pico agregado de 98 Mbps contra los 145 Mbps de diseño, se usa al 68 %. Si la demanda crece a 6 Mbps por usuario activo, el sector más cargado sube a 81 %. Con 8 Mbps, S2 se saturaría y la acción sería añadir un cuarto sector o un segundo radio. Y si el uso del backhaul pasa del 70 %, un segundo terminal Starlink en una fase 2.
 
-## Diapositiva 13. El diseño aguanta copas de 22 m y 2° de error
+## Diapositiva 14. El diseño aguanta copas de 22 m y 2° de error
 **Habla: Maximiliano González De León** · ≈ 60 s
 
 Probamos qué pasa si nuestros supuestos fallan. Recalculamos todo el modelo para varios escenarios. Con torre de 36 metros el peor margen sube a 20 dB; con copas de 15 metros, a 25 dB. Con copas de 25 metros, en vez de 20, una sola casa, la 26, cae por debajo de 10 dB y se aplica la contingencia. Con un desvanecimiento adicional de 6 dB por lluvia fuerte o árboles mojados, una casa cae a 7.4 dB en subida. Con un error de montaje de 2 grados de inclinación, las 109 casas siguen conectadas; con 4 grados, 4 casas se pierden, por eso la inclinación se verifica en campo. Y una torre de 24 metros no es suficiente en el peor escenario, lo que confirma la altura de 30 metros.
 
-## Diapositiva 14. La torre se alimenta sola con sol y baterías
+## Diapositiva 15. La torre se alimenta sola con sol y baterías
 **Habla: Diego Andre Cuellar Butcher** · ≈ 60 s
 
 Gracias, Maximiliano. Les cuento cómo se alimenta la torre. La energía no es el foco de este proyecto, así que la dimensionamos de forma sencilla. La carga continua es de unos 158 watts: el plato Starlink con 100 watts, tres radios de 9.5 watts, un router y 10 % de pérdidas de conversión. Son 3.8 kilovatios-hora al día. Con dos días de autonomía y 90 % de profundidad de descarga, necesitamos 8.4 kilovatios-hora, es decir dos baterías de litio-fosfato de hierro de 5.12 kWh, que dan 2.4 días. Para recargar en el mes menos soleado, con unas 3.5 horas solar pico, que es un supuesto típico de la zona, se necesitan 1.44 kilovatios pico: tres paneles de 550 watts. Con esto, la torre es autosustentable sin red eléctrica. El costo aproximado del sistema de energía completo, con paneles, baterías, controlador, inversor y estructura, es de unos 74 mil quetzales, antes de flete e imprevistos.
 
-## Diapositiva 15. Q4,050 por hogar de CAPEX y Q87 al mes de OPEX
+## Diapositiva 16. Q4,050 por hogar de CAPEX y Q87 al mes de OPEX
 **Habla: Diego Andre Cuellar Butcher** · ≈ 75 s
 
 Los costos están en el libro de Excel con cada precio, su estado y su fuente, al tipo de cambio de 7.6445 quetzales por dólar. Algunos precios son publicados, como el plato Starlink, los radios, las antenas y las baterías; otros son estimaciones que deben cotizarse en Guatemala, y así están marcados. El CAPEX de diseño, con 109 puntos equipados, es de unos 397 mil quetzales, unos 52 mil dólares, incluyendo 10 % de flete y aduana y 10 % de imprevistos. Dividido entre los 98 hogares del año 3 son 4,050 quetzales por hogar. La mayor parte son las antenas y la instalación en las casas, seguida por la energía y la torre. El OPEX mensual del año 3 es de 8,530 quetzales: la suscripción Starlink con su plan de 2 terabytes más bloques extra, mantenimiento, un técnico local de medio tiempo, reservas para reponer antenas y baterías, seguro y administración. Por hogar son 87 quetzales al mes. Agregando la amortización del CAPEX a cinco años, la tarifa de equilibrio es de 155 quetzales por hogar al mes. Proponemos 175 quetzales, con lo que el CAPEX se recupera en unos 46 meses.
 
-## Diapositiva 16. Operación como empresa registrada ante la SIT
+## Diapositiva 17. Operación como empresa registrada ante la SIT
 **Habla: Diego Andre Cuellar Butcher** · ≈ 60 s
 
 Para el marco legal, asumimos que el proyecto lo ejecuta una empresa operadora ya legalizada. La Ley General de Telecomunicaciones, el Decreto 94-96, establece que la Superintendencia de Telecomunicaciones administra el espectro y la Tabla Nacional de Atribución de Frecuencias. Nuestros tres canales, 5745, 5785 y 5825 MHz, están dentro de la banda de 5725 a 5850 MHz, que figura entre las bandas de 5 GHz de Guatemala según una referencia regional; la potencia máxima y las condiciones exactas hay que confirmarlas en la tabla vigente, y lo declaramos así, porque no pudimos acceder al texto oficial. La empresa inscribe el servicio en el registro de telecomunicaciones. Starlink fue autorizado por la SIT en mayo de 2023 y el backhaul se contrata como servicio comercial Business. Además se requiere el acuerdo con la comunidad, a través del COCODE, para el terreno de la torre y el permiso municipal de Chisec para la obra civil. Para el análisis académico, asumimos que los derechos de uso del espectro están disponibles.
 
-## Diapositiva 17. Una torre, tres sectores y todas las casas conectadas
+## Diapositiva 18. Una torre, tres sectores y todas las casas conectadas
 **Habla: Diego Andre Cuellar Butcher** · ≈ 45 s
 
 Para concluir: una sola torre de 30 metros, con tres sectores de 5 GHz y backhaul Starlink, conecta las 109 casas de Babilonia con un margen de al menos 13.4 dB en el peor enlace de subida. El relieve de la hondonada es favorable; la vegetación es lo que determina la altura de la torre y el presupuesto de enlace. Los tres canales con sincronía GPS son necesarios para evitar interferencia entre sectores. El sistema es robusto frente a variaciones razonables y tiene margen para crecer. Cuesta unos 4,050 quetzales por hogar y se sostiene con una tarifa de alrededor de 155 quetzales al mes. Sus limitaciones: los patrones de antena son modelos calibrados con las fichas, la altura de copas es un supuesto y varios precios deben cotizarse localmente. Con esto terminamos; Kevin, Maximiliano y yo estamos listos para sus preguntas. KEVIN responde sobre arquitectura y equipos; MAXIMILIANO sobre propagación, enlace y capacidad; DIEGO sobre energía, costos y marco legal.
