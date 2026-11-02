@@ -100,7 +100,9 @@ L.append(f'\\midrule \\textbf{{OPEX mensual}} & \\textbf{{{tot_op:,.0f}}}\\\\ OP
 open('tablas/t_opex.tex', 'w').write('\n'.join(L) + '\n\\bottomrule\\end{tabular}\n')
 json.dump(dict(capx=capx, caph=caph, opex=tot_op, opexh=ph, am=am, eq=eq, pay=pay, sub=sub), open('costos_resumen.json', 'w'))
 # 6) sensibilidad
-sv = pd.read_csv('../04_propagacion_linkbudget/sensibilidad_escenarios.csv'); L = ['\\begin{tabular}{p{6.6cm}rrrr}\\toprule Escenario & Casas útiles & Margen DL mín. (dB) & Margen UL mín. (dB) & Casas $>$30 dB\\\\\\midrule']
-for _, r_ in sv.iterrows(): L.append(f'{tx(r_.iloc[0])} & {int(r_.iloc[1])} & {r_.iloc[2]:.1f} & {r_.iloc[3]:.1f} & {int(r_.iloc[6])}\\\\')
+sv = pd.read_csv('../04_propagacion_linkbudget/sensibilidad_escenarios.csv')
+short = {'Desvanecimiento extra 6 dB (lluvia fuerte/arboles mojados)': 'Desvanecimiento extra de 6 dB', 'Error de montaje +2 grados inclinacion': 'Error de montaje: +2° de inclinación', 'Error de montaje +4 grados inclinacion': 'Error de montaje: +4° de inclinación'}
+L = ['\\begin{tabular}{p{5.6cm}rrrr}\\toprule Escenario & Casas útiles & DL mín. (dB) & UL mín. (dB) & Casas $>$30 dB\\\\\\midrule']
+for _, r_ in sv.iterrows(): L.append(f'{tx(short.get(r_.iloc[0], r_.iloc[0]))} & {int(r_.iloc[1])} & {r_.iloc[2]:.1f} & {r_.iloc[3]:.1f} & {int(r_.iloc[6])}\\\\')
 open('tablas/t_sens.tex', 'w').write('\n'.join(L) + '\n\\bottomrule\\end{tabular}\n')
 print('listo', round(capx), round(eq, 1), round(pay, 1))
